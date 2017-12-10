@@ -1,23 +1,16 @@
 <?php 
 
-session_start();
 
 require_once "../clases/observaciones.class.php";
 
-	$profesor= $_SESSION["profesor"];
-	$codigo = $_POST['cod'];
-	$descripcion = $_POST['descripcion'];
-
-	$fecha_actual = new DateTime();
-	$cadena_fecha_actual = $fecha_actual->format("Y-m-d");
-
+$codigo = $_GET['cod'];
 
 
    //Instancia del objeto
-    $area = new observaciones();
+    $ob = new observaciones();
 
     //Envio los datos al método    
-    $verificar = $area->agregarObservacion($cadena_fecha_actual,$codigo,$profesor,$descripcion);
+    $verificar = $ob->eliminarObservacion($codigo);
 
 
       if ($verificar == true) {

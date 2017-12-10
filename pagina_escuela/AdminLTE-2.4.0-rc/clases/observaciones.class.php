@@ -38,7 +38,60 @@ function cargarObservacionesAlumno($alumno){
 
 	} //Fin
 
+function agregarObservacion($fecha,$alumno,$materia,$estado){
 
-}
+			$sql = $this->db->query("INSERT INTO observaciones (fecha,id_alumno,id_detalle_materia,descripcion) VALUES ('$fecha','$alumno','$materia','$estado')"); 
+        
+        if($sql == true){
+
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+
+	}//agregar observacion
+
+function eliminarObservacion($codigo){
+
+		
+		$sql = $this->db->query("DELETE FROM observaciones WHERE id_obseracion = '$codigo'"); 
+        
+        if($sql == true){
+
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+
+ 
+	} //Fin eliminar madre
+
+function modificarObservacion($fecha,$alumno,$materia,$estado,$codigo){
+
+		
+		$sql = $this->db->query("UPDATE observaciones SET fecha='$fecha', id_alumno='$alumno', id_detalle_materia='$materia', descripcion='$estado' WHERE id_obseracion = '$codigo'"); 
+		
+        
+        if($sql == true){
+
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+
+ 
+	} //Fin
+
+}// fin class observaciones
+
 
  ?>

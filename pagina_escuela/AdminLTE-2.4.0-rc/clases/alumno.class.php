@@ -34,6 +34,14 @@ function cargarAlumno($codigo){
         return $seccion;  
  
 	} //Fin
+	function cargarAlumnos(){
+
+		$sql = $this->db->query('SELECT * FROM alumno '); 
+        $seccion = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $seccion;  
+ 
+	} //Fin
+
 
 
 

@@ -6,6 +6,7 @@ require_once "../clases/observaciones.class.php";
 
 	$profesor= $_SESSION["profesor"];
 	$codigo = $_POST['cod'];
+  $alumno = $_POST['alumno'];
 	$descripcion = $_POST['descripcion'];
 
 	$fecha_actual = new DateTime();
@@ -17,7 +18,7 @@ require_once "../clases/observaciones.class.php";
     $area = new observaciones();
 
     //Envio los datos al método    
-    $verificar = $area->agregarObservacion($cadena_fecha_actual,$codigo,$profesor,$descripcion);
+    $verificar = $area->modificarObservacion($cadena_fecha_actual,$alumno,$profesor,$descripcion,$codigo);
 
 
       if ($verificar == true) {

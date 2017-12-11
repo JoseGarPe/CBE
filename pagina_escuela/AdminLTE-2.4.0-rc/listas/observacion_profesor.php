@@ -205,12 +205,66 @@ $(function(){
 
 <section class="content">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-lg-8">
           
             <div id="respuesta">
 
           <!-- /.box -->
         </div>
+        <div class="box-body">
+           <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Fecha</th>
+                  <th>Alumno</th>
+                  <th>Profesor</th>
+                  <th>Descripcion</th>
+                  <th>Operaciones</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+                
+                
+                <?php 
+
+                            require_once "../clases/observaciones.class.php";
+
+                            $madress = new observaciones();
+
+                            $madre = $madress->cargarObservaciones();
+
+                            foreach ($madre as $row) {
+                              
+                              echo '
+
+                              <tr>
+                                  <td>'.$row["id_observacion"].'</td>
+                                  <td>'.$row["fecha"].'</td>
+                                  <td>'.$row["id_alumno"].'</td>
+                                   <td>'.$row["id_detalle_materia"].'</td>
+                                  <td>'.$row["descripcion"].'</td>
+                                  
+                                  <td>
+                                    <a href="../registros/modificar_madre.php?cod='.$row["id_observacion"].'" class="btn btn-warning">Modificar</a>
+                                    <a href="../scripts/eliminar_observacion.script.php?cod='.$row["id_observacion"].'" class="btn btn-danger">Eliminar</a>
+                                  </td>
+                              </tr>
+
+                              ';
+
+                            }
+
+                            ?>
+
+                </tbody>
+
+
+                
+              </table>
+              </div>
         <!-- /.col -->
       </div>
       </div>

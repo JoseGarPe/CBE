@@ -37,10 +37,16 @@ function cargarObservacionesAlumno($alumno){
 
 
 	} //Fin
+		function  cargarObservaciones(){
+
+		$sql = $this->db->query("SELECT * FROM observaciones"); 
+        $madre= $sql->fetch_all(MYSQLI_ASSOC); 
+        return $madre;  
+	}// fin consultar madre	
 
 function agregarObservacion($fecha,$alumno,$materia,$estado){
 
-			$sql = $this->db->query("INSERT INTO observaciones (id_obseracion,fecha,id_alumno,id_detalle_materia,descripcion) VALUES (0,'$fecha','$alumno','$materia','$estado')"); 
+			$sql = $this->db->query("INSERT INTO observaciones (fecha,id_alumno,id_detalle_materia,descripcion) VALUES ('$fecha','$alumno','$materia','$estado')"); 
         
         if($sql == true){
 
@@ -58,7 +64,7 @@ function agregarObservacion($fecha,$alumno,$materia,$estado){
 function eliminarObservacion($codigo){
 
 		
-		$sql = $this->db->query("DELETE FROM observaciones WHERE id_obseracion = '$codigo'"); 
+		$sql = $this->db->query("DELETE FROM observaciones WHERE id_observacion = '$codigo'"); 
         
         if($sql == true){
 

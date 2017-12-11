@@ -28,16 +28,19 @@ session_start();
 
                             
                             $codigo = $_POST['codigo'];
-
                             $alumno = $misAlumno->cargarAlumno($codigo);
 
                             foreach ($alumno as $row) {
                               
                               echo '
+                              	<div class="form-group">
+				                  <label for="codigo1">Alumno:'.$codigo.' &nbsp&nbsp</label>
+				                  <input type="hidden"  id="alumno" name="alumno" value="'.$codigo.'" > 
 
+				                </div>
                              	<div class="form-group">
 				                  <label for="codigo1">Nombre: &nbsp&nbsp</label><label for="nombre">'.$row['nombre'].'</label>
-				                  <input type="text" style="display: none;"   name="cod" value="'.$codigo.'" > 
+				                  
 				                </div>
 
 				                <div class="form-group">

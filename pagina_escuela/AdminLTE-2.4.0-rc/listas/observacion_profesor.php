@@ -38,7 +38,8 @@ session_start();
 <script>   
 $(function(){
  $("#btn_enviar").click(function(){
- var url = "../scripts/Observaciones_profesor.php"; // El script a dónde se realizará la petición.
+  cod=$('#codigo').val();
+ var url = "../scripts/observaciones_profesor.php"; // El script a dónde se realizará la petición.
     $.ajax({
            type: "POST",
            url: url,
@@ -181,7 +182,7 @@ $(function(){
         <div class="col-xs-4">
           
             
-            <form role="form" method="post" id="formulario" >
+            <form role="form" method="post" id="formulario" action="">
               <div class="box-body">
 
                 <div class="form-group">
@@ -191,6 +192,7 @@ $(function(){
 
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+              </div>
               </div>
             </form>            
           <!-- /.box -->
@@ -210,6 +212,7 @@ $(function(){
           <!-- /.box -->
         </div>
         <!-- /.col -->
+      </div>
       </div>
       <!-- /.row -->
     </section>

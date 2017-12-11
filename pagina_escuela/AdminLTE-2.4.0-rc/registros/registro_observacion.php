@@ -31,7 +31,11 @@
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!--DATA LIVE SEARCH -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
 
+    
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -130,15 +134,50 @@
               <div class="box-body">
 
             <div class="form-group">
-                  <label for="nombre">Profesor</label>
-                  <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
-                </div>
+                  <label for="nombre">Alumno</label>
+                <span class="form-group-btn">
+                  <button class="btn btn-success" data-toggle="modal" data-target="#modalForm">Buscar</button>
+                </span>
+                 
+                  <output type="text" class="form-control" required="" id="talumno" name="talumno">
+                  </br>
+               
+           </div>
+        
+                datos
+                <h1 id="alumnos">AAA000</h1>
+             <div class="form-group">
+            <label>alumnos</label>
+            <div class="row-fluid"></div>
+            <select name="alumno" id="SAlumno" class="form-control selectpicker" id="alumno" data-live-search="true" data-live-search-style="startsWith">
+             <?php 
+
+                            require_once "../clases/alumno.class.php";
+
+                            $madress = new alumno();
+
+                            $madre = $madress->cargarAlumnos();
+
+                            foreach ($madre as $row) {
+                              
+                              echo'
+
+                              <option value="'.$row["id_alumno"].'">
+                                 '.$row["id_alumno"].' 
+                                  </option>
+                                 
+                                  ';
+
+                            }
+
+                            ?>
+            </select>
+          </div>
 
             <!--MODAL-->
             <!-- Button to trigger modal -->
-<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">
-    Buscar profesor
-</button>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="modalForm" role="dialog">
@@ -152,17 +191,20 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Contact Form</h4>
             </div>
+            <h1 id="alumnos"></h1>
             
             <!-- Modal Body -->
             <div class="modal-body">
                 <p class="statusMsg"></p>
+             
                 <table id="example1" class="table table-bordered table-striped">
+         
                 <thead>
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
-                  <th>Grado</th>
+                  <th>Seleccionar</th>
                 </tr>
                 </thead>
 
@@ -184,10 +226,13 @@
 
                               <tr>
                                   <td>'.$row["id_alumno"].'</td>
+                                  <input type="hidden" name="alumno" value="'.$row["id_alumno"].'" id="alumno">
                                   <td>'.$row["nombre"].'</td>
-                                  <td>'.$row["apellido"].'</td>
-                                   <td>'.$row["id_detalle_grado"].'</td> 
                                  
+                                   <td>'.$row["id_detalle_grado"].'</td> 
+                                   <td>
+                                  <button type="button" class="btn btn-primary" id="agregarAl" data-dismiss="modal">+</button>
+                                 </td>
                               </tr>
 
                               ';
@@ -198,25 +243,12 @@
 
                 </tbody>
               </table>
-                <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+           
                    </div>
             
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">SUBMIT</button>
             </div>
         </div>
     </div>
@@ -226,21 +258,17 @@
 
             <!-- fin modal-->
              
-              <div class="form-group">
-                  <label for="nombre">Alumno</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
-                </div>
-              
-              <div class="form-group">
+                        
+            <div class="form-group">
                   <label for="nombre">Descripcion</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
+                  <input type="text" class="form-control" required="" id="descripcion" name="descripcion" placeholder="ejemplo@mail.com">
                 </div>
             
             </div>
 
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_madres.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/observacion_profesor.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
 </div>
@@ -255,6 +283,7 @@
   </div>
 
 
+
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -267,7 +296,14 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<script>
+<script src="../dist/js/funciones.js"></script>
+<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
+
+   <script>
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
@@ -279,6 +315,19 @@
       'autoWidth'   : false
     })
   })
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#agregarAl').click(function(){
+      agregarAlumno();
+      });
+  });
+  function agregarAlumno(){
+    dato=document.getElementById('alumno').value.split('_');
+    id_alumno=dato[0];
+    $("#talumno").html("");
+    $("#talumno").html(dato);
+  }
 </script>
 </body>
 </html>

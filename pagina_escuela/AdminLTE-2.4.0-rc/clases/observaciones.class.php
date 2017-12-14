@@ -44,7 +44,8 @@ function cargarObservacionesAlumno($alumno){
         						INNER JOIN escuela_lice.profesores profesores
          						  ON (observaciones.id_profesor = profesores.id_profesor))
       							 INNER JOIN escuela_lice.alumno alumno
-         						 ON (observaciones.id_alumno = alumno.id_alumno)"); 
+         						 ON (observaciones.id_alumno = alumno.id_alumno)
+         						   ORDER BY   observaciones.fecha"); 
         $madre= $sql->fetch_all(MYSQLI_ASSOC); 
         return $madre;  
 	}// fin consultar todas las observaciones

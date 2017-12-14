@@ -197,10 +197,7 @@ $(function(){
                 </div>
 
               <div class="box-footer">
-              </br>
-                <button type="button" onClick="location.href = '../listas/lista_alumnos.php'" class="btn btn-default pull-right"><i class="glyphicon glyphicon-user"></i> Alumnos</button>
-             
-                
+            
               </div>
               </div>
             </form> 

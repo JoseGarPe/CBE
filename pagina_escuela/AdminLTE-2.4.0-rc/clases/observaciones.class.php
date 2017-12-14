@@ -39,7 +39,12 @@ function cargarObservacionesAlumno($alumno){
 	} //Fin
 		function  cargarObservaciones(){
 
-		$sql = $this->db->query("SELECT * FROM observaciones"); 
+		$sql = $this->db->query("SELECT   observaciones.id_observacion,alumno.id_alumno,alumno.nombre,observaciones.id_profesor,alumno.apellido,observaciones.fecha,observaciones.descripcion
+  								FROM (escuela_lice.observaciones observaciones
+        						INNER JOIN escuela_lice.profesores profesores
+         						  ON (observaciones.id_profesor = profesores.id_profesor))
+      							 INNER JOIN escuela_lice.alumno alumno
+         						 ON (observaciones.id_alumno = alumno.id_alumno)"); 
         $madre= $sql->fetch_all(MYSQLI_ASSOC); 
         return $madre;  
 	}// fin consultar todas las observaciones

@@ -5,7 +5,7 @@ session_start();
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>CBE | Administracion</title>
+  <title>**** | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -39,7 +39,7 @@ session_start();
 $(function(){
  $("#btn_enviar").click(function(){
   cod=$('#codigo').val();
- var url = "../scripts/observaciones_profesor.php"; // El script a dónde se realizará la petición.
+ var url = "../scripts/observaciones_admin.php"; // El script a dónde se realizará la petición.
     $.ajax({
            type: "POST",
            url: url,
@@ -65,11 +65,11 @@ $(function(){
 
   <header class="main-header">
     <!-- Logo -->
-      <a href="index2.html" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>C</b>BE</span>
+      <span class="logo-mini"><b>*</b>*</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>Colegio</b>BautistaEmmanuel</span>
+      <span class="logo-lg"><b>***</b>***</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -120,7 +120,7 @@ $(function(){
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_profe.php";  
+    require_once "../menu_admin.php";  
      ?>
         
     </section>
@@ -178,21 +178,39 @@ $(function(){
              ?>
 
 <section class="content">
+
       <div class="row">
         <div class="col-lg-8">
           <div class="box">
-            <div id="respuesta">
+          
+            <form role="form" method="post" id="formulario" action="">
 
-          <!-- /.box -->
+              <div class="box-body">
+              <div class="col-lg-4">
+             <label for="codigo">Codigo del alumno</label>
+                <div class="input-group">
+                  
+                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="8" minlength="8" placeholder="Ej. VM152233">
+                  <span class="input-group-btn">
+                       <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+                  </span>
+                </div>
+
         </div>
-        <div class="box-body">
-           <table id="example1" class="table table-bordered table-striped">
+        </br>
+        </br>
+        </br>
+        </br>
+            
+              <div class="box-footer">
+             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Codigo</th>
                   <th>Fecha</th>
                   <th>Alumno</th>
                   <th>Descripcion</th>
+                     <th>Profesor</th>
                   <th>Operaciones</th>
                 </tr>
                 </thead>
@@ -207,7 +225,7 @@ $(function(){
                             $profesor = $_SESSION['profesor'];
                             $madress = new observaciones();
 
-                            $madre = $madress->cargarObservacionProfesor($profesor);
+                            $madre = $madress->cargarObservaciones();
 
                             foreach ($madre as $row) {
                               
@@ -216,8 +234,9 @@ $(function(){
                               <tr>
                                   <td>'.$row["id_observacion"].'</td>
                                   <td>'.$row["fecha"].'</td>
-                                  <td>'.$row["id_alumno"].'</td>
+                                  <td>'.$row["nombre"].' '.$row["apellido"].'</td>
                                   <td>'.$row["descripcion"].'</td>
+                                  <td>'.$row["id_profesor"].'</td>
                                   
                                   <td>
                                     <a href="../registros/modificar_observacion.php?cod='.$row["id_observacion"].'" class="btn btn-warning">Modificar</a>
@@ -236,12 +255,21 @@ $(function(){
 
                 
               </table>
-              <div class="box-footer clearfix no-border">
-              <button type="button" onClick="location.href = '../listas/observacion_profesor.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nueva Observacion</button>
               </div>
               </div>
-          </div>
+            </form> 
+           </div>          
+          <!-- /.box -->
         </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+
+<section class="content">
+      <div class="row">
+          <div id="respuesta"></div>
         <!-- /.col -->
       </div>
      

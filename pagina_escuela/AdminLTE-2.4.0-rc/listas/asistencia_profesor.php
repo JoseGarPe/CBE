@@ -57,8 +57,9 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","../scripts/secciones_profesor.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
+xmlhttp.send("grado="+cod);
 
+document.getElementById("grado").value=cod;
 }
 
 function mostrarLista(cod){
@@ -81,12 +82,12 @@ xmlhttp.onreadystatechange=function()
     }
   }
 xmlhttp.open("POST","../scripts/generar_listas_asistencia.php",true);
+
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
+xmlhttp.send("seccion="+cod);
+document.getElementById("seccion").value=cod;
 
-}
-
-</script>
+}</script>
 
 
 </head>
@@ -172,7 +173,8 @@ xmlhttp.send("cod_banda="+cod);
 <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          
+            <div class="box">
+           <div class="box-body">
             
              <div class="form-group">
                   
@@ -211,8 +213,15 @@ xmlhttp.send("cod_banda="+cod);
 
                 <div class="form-group">
                     <div id="datos"></div>
-                </div>
 
+                </div>
+                </br>
+      
+            <div class="box-footer">
+            
+              </div>
+           </div>
+        </div>
 
                 
             

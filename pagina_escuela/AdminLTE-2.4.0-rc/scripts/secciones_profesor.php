@@ -38,5 +38,11 @@ session_start();
 </select>
 
 <div class="form-group">
-    <div id="datos2"></div>
+    <div id="datos2">
+      
+
+
+
+
+    </div>
 </div>

@@ -1,12 +1,13 @@
 <?php
 session_start();
+$alumno= $_SESSION["alumno"];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>**** | Administracion</title>
+  <title>CBE | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -71,12 +72,14 @@ xmlhttp.send("cod_banda="+cod);
 
   <header class="main-header">
     <!-- Logo -->
+
     <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>*</b>*</span>
+      <span class="logo-mini"><b>CB</b>E</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>***</b>***</span>
+      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
     </a>
+    
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
@@ -92,7 +95,7 @@ xmlhttp.send("cod_banda="+cod);
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -175,7 +178,7 @@ xmlhttp.send("cod_banda="+cod);
                             require_once "../clases/asistencia.class.php";
 
                             $misAsistencias = new asistencia();
-                            $alumno= $_SESSION["alumno"];
+                            
                             $asistencia = $misAsistencias->cargarAsistenciaAlumno($alumno);
 
                             foreach ($asistencia as $row) {

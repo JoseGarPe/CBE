@@ -178,23 +178,33 @@ $(function(){
              ?>
 
 <section class="content">
+<div class="col-lg-4">
+         
+        </div>
       <div class="row">
         <div class="col-xs-4">
-          
+          <div class="box">
             
             <form role="form" method="post" id="formulario" action="">
               <div class="box-body">
-
-                <div class="form-group">
-                  <label for="codigo">Codigo del alumno</label>
+                <label for="codigo">Codigo del alumno</label>
+                <div class="input-group">
+                  
                   <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="8" minlength="8" placeholder="Ej. VM152233">
+                  <span class="input-group-btn">
+                       <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+                  </span>
                 </div>
 
               <div class="box-footer">
-                <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+              </br>
+                <button type="button" onClick="location.href = '../listas/lista_alumnos.php'" class="btn btn-default pull-right"><i class="glyphicon glyphicon-user"></i> Alumnos</button>
+             
+                
               </div>
               </div>
-            </form>            
+            </form> 
+           </div>          
           <!-- /.box -->
         </div>
         <!-- /.col -->
@@ -205,69 +215,10 @@ $(function(){
 
 <section class="content">
       <div class="row">
-        <div class="col-lg-8">
-          
-            <div id="respuesta">
-
-          <!-- /.box -->
-        </div>
-        <div class="box-body">
-           <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Fecha</th>
-                  <th>Alumno</th>
-                  <th>Profesor</th>
-                  <th>Descripcion</th>
-                  <th>Operaciones</th>
-                </tr>
-                </thead>
-
-
-                <tbody>
-                
-                
-                <?php 
-
-                            require_once "../clases/observaciones.class.php";
-
-                            $madress = new observaciones();
-
-                            $madre = $madress->cargarObservaciones();
-
-                            foreach ($madre as $row) {
-                              
-                              echo '
-
-                              <tr>
-                                  <td>'.$row["id_observacion"].'</td>
-                                  <td>'.$row["fecha"].'</td>
-                                  <td>'.$row["id_alumno"].'</td>
-                                   <td>'.$row["id_detalle_materia"].'</td>
-                                  <td>'.$row["descripcion"].'</td>
-                                  
-                                  <td>
-                                    <a href="../registros/modificar_madre.php?cod='.$row["id_observacion"].'" class="btn btn-warning">Modificar</a>
-                                    <a href="../scripts/eliminar_observacion.script.php?cod='.$row["id_observacion"].'" class="btn btn-danger">Eliminar</a>
-                                  </td>
-                              </tr>
-
-                              ';
-
-                            }
-
-                            ?>
-
-                </tbody>
-
-
-                
-              </table>
-              </div>
+          <div id="respuesta"></div>
         <!-- /.col -->
       </div>
-      </div>
+     
       <!-- /.row -->
     </section>
 

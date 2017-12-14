@@ -42,11 +42,37 @@ function cargarObservacionesAlumno($alumno){
 		$sql = $this->db->query("SELECT * FROM observaciones"); 
         $madre= $sql->fetch_all(MYSQLI_ASSOC); 
         return $madre;  
-	}// fin consultar madre	
+	}// fin consultar todas las observaciones
+function cargarObservacionProfesor($profesor){
+
+
+		$sql = $this->db->query("SELECT * FROM observaciones WHERE id_profesor= '$profesor'"); 
+        $not = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $not;  
+
+
+	} //Fin observaciones profesores
+function cargarObservacion($obs){
+
+
+		$sql = $this->db->query("SELECT * FROM observaciones WHERE id_observacion= '$obs'"); 
+        $not = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $not;  
+
+
+	} //Fin observaciones profesores
+	function  cargarObservacionAlumno($alumno){
+
+		$sql = $this->db->query("SELECT o.fecha , o.id_alumno , o.descripcion, p.nombre,p.apellido 
+								FROM observaciones o INNER JOIN profesores p ON p.id_profesor = o.id_profesor 
+								WHERE id_alumno = '$alumno'"); 
+        $madre= $sql->fetch_all(MYSQLI_ASSOC); 
+        return $madre;  
+	}// fin consultar todas las observaciones
 
 function agregarObservacion($fecha,$alumno,$materia,$estado){
 
-			$sql = $this->db->query("INSERT INTO observaciones (fecha,id_alumno,id_detalle_materia,descripcion) VALUES ('$fecha','$alumno','$materia','$estado')"); 
+			$sql = $this->db->query("INSERT INTO observaciones (fecha,id_alumno,id_profesor,descripcion) VALUES ('$fecha','$alumno','$materia','$estado')"); 
         
         if($sql == true){
 
@@ -79,10 +105,10 @@ function eliminarObservacion($codigo){
  
 	} //Fin eliminar madre
 
-function modificarObservacion($fecha,$alumno,$materia,$estado,$codigo){
+function modificarObservacion($fecha,$alumno,$estado,$codigo){
 
 		
-		$sql = $this->db->query("UPDATE observaciones SET fecha='$fecha', id_alumno='$alumno', id_detalle_materia='$materia', descripcion='$estado' WHERE id_obseracion = '$codigo'"); 
+		$sql = $this->db->query("UPDATE observaciones SET fecha='$fecha',id_alumno='$alumno', descripcion='$estado' WHERE id_observacion = '$codigo'"); 
 		
         
         if($sql == true){

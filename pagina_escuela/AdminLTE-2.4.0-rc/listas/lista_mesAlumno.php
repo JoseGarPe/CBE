@@ -1,3 +1,7 @@
+<?php
+session_start();
+$alumno = $_SESSION['alumno'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +62,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -173,14 +177,10 @@
 
 
                 <tbody>
-                
-                
-                <?php 
+               <?php 
               require_once "../clases/mensualidad_alumno.class.php";
-              session_start();
-              $alumno = $_SESSION['alumno'];
-             
-                            $mass = new mensualidad_alumno();
+              
+                          $mass = new mensualidad_alumno();
                             $ma = $mass->consultarMensualidadA($alumno);
                            foreach ($ma as $row) {
                               echo '

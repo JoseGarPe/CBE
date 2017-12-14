@@ -1,13 +1,13 @@
 <?php
 session_start();
-$alumno= $_SESSION["alumno"];
+$alumno= $_GET['cod'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CBE | Administracion</title>
+  <title>**** | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -72,7 +72,7 @@ xmlhttp.send("cod_banda="+cod);
 
   <header class="main-header">
     <!-- Logo -->
-   <a href="index2.html" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo  -->
       <span class="logo-mini"><b>CB</b>E</span>
       <!-- logo regular s -->
@@ -92,13 +92,13 @@ xmlhttp.send("cod_banda="+cod);
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $alumno?></span>
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Profesor</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -127,7 +127,7 @@ xmlhttp.send("cod_banda="+cod);
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_alumno.php";  
+    require_once "../menu_profe.php";  
      ?>
         
     </section>
@@ -140,7 +140,7 @@ xmlhttp.send("cod_banda="+cod);
     <section class="content-header">
       <h1>
         Alumnos
-        <small>Notas del periodo</small>
+        <small>Observaciones</small>
       </h1>
     </section>
     <br>
@@ -151,47 +151,68 @@ xmlhttp.send("cod_banda="+cod);
         <div class="col-xs-12">
           
             
-             <div class="form-group">
-                  <label for="estado">*Selecciona una opcion para ver tus notas*</label>
-                    <br>
-                    <select onchange="mostrarInfo(this.value)" id="estado" name="estado" class="form-control select2" style="width: 25%;">
+            <!-- /.box-header -->
+            
 
-                          <option value="">--------------------------------------</option>
+          <div class="box">
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr class="danger">
+                  <th>Fecha</th>
+                  <th>Descripcion</th>
+                  <th>Profesor</th>
+                </tr>
+                </thead>
 
-                        <?php 
-                        
 
+                <tbody>
+                
+                
+                <?php 
 
-                            require_once "../clases/periodo.class.php";
+                            
+                            require_once "../clases/observaciones.class.php";
 
-                            $misPeriodos = new periodo();
+                            $misObservaciones = new observaciones();
+                            $alumno= $_GET['cod'];
+                            $_SESSION["alumno"] = $alumno;
+                            $observaciones = $misObservaciones->cargarObservacionAlumno($alumno);
 
-                            $periodo = $misPeriodos->cargarPeriodos();
-
-                            foreach ($periodo as $row) {
+                            foreach ($observaciones as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id_periodo'].'">'.$row['nombre'].' ('.$row['ponderacion'].'%)</option>
+                              <tr>
+                                  <td>'.$row["fecha"].'</td>
+                                  <td>'.$row["descripcion"].'</td>
+                                  <td>'.$row["nombre"].' '.$row["apellido"].'</td>
+                                  
+                              </tr>
 
                               ';
 
                             }
 
-
                             ?>
 
-                        
+                </tbody>
 
 
+                
+              </table>
 
-
-                  </select>
+              <div class="row no-print">
+                <div class="col-xs-12">
+                  <a href="../scripts/imprimir_observaciones_alumno.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
+                  <a href="../listas/lista_alumnos.php" class="btn btn-default pull-right"><i class="glyphicon glyphicon-user"></i> Alumnos</a>
+                 
                 </div>
+              </div>
 
-
-                <div id="datos"></div>
-            
+            </div>
+            <!-- /.box-body -->
+          </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->

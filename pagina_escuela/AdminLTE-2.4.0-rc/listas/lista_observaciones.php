@@ -1,12 +1,10 @@
 <?php
 session_start();
-$alumno= $_SESSION["alumno"];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>CBE | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -36,33 +34,28 @@ $alumno= $_SESSION["alumno"];
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>   
+$(function(){
+ $("#btn_enviar").click(function(){
+  cod=$('#codigo').val();
+ var url = "../scripts/observaciones_profesor.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#formulario").serialize(), // Adjuntar los campos del formulario enviado.
+           success: function(data)
+           {
+               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+               $('#myModal').modal('show');
+           }
+         });
 
-function mostrarInfo(cod){
 
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/generar_notas.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
 
-}
-
+    return false; // Evitar ejecutar el submit del formulario.
+ });
+});
 </script>
 
 
@@ -72,11 +65,11 @@ xmlhttp.send("cod_banda="+cod);
 
   <header class="main-header">
     <!-- Logo -->
-   <a href="index2.html" class="logo">
+      <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>CB</b>E</span>
+      <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
+      <span class="logo-lg"><b>Colegio</b>BautistaEmmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -93,7 +86,7 @@ xmlhttp.send("cod_banda="+cod);
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $alumno?></span>
+              <span class="hidden-xs">****</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -127,7 +120,7 @@ xmlhttp.send("cod_banda="+cod);
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_alumno.php";  
+    require_once "../menu_profe.php";  
      ?>
         
     </section>
@@ -139,65 +132,122 @@ xmlhttp.send("cod_banda="+cod);
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Alumnos
-        <small>Notas del periodo</small>
+        Profesores
+        <small>Observaciones</small>
       </h1>
     </section>
     <br>
+    <?php 
 
+            if (isset($_GET['success'])) {
+                
+
+                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-success">
+              
+                Los datos han sido guardados exitosamente.
+             </div>
+
+                    ';
+
+                }
+
+            }elseif (isset($_GET['error'])) {
+
+               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-danger">
+              
+                Error al guardar, verifique los datos ingresados.
+             </div>
+
+                    ';
+
+                }
+
+            }
+
+
+             ?>
 
 <section class="content">
       <div class="row">
-        <div class="col-xs-12">
-          
-            
-             <div class="form-group">
-                  <label for="estado">*Selecciona una opcion para ver tus notas*</label>
-                    <br>
-                    <select onchange="mostrarInfo(this.value)" id="estado" name="estado" class="form-control select2" style="width: 25%;">
+        <div class="col-lg-8">
+          <div class="box">
+            <div id="respuesta">
 
-                          <option value="">--------------------------------------</option>
+          <!-- /.box -->
+        </div>
+        <div class="box-body">
+           <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Fecha</th>
+                  <th>Alumno</th>
+                  <th>Descripcion</th>
+                  <th>Operaciones</th>
+                </tr>
+                </thead>
 
-                        <?php 
-                        
 
+                <tbody>
+                
+                
+                <?php 
 
-                            require_once "../clases/periodo.class.php";
+                            require_once "../clases/observaciones.class.php";
+                            $profesor = $_SESSION['profesor'];
+                            $madress = new observaciones();
 
-                            $misPeriodos = new periodo();
+                            $madre = $madress->cargarObservacionProfesor($profesor);
 
-                            $periodo = $misPeriodos->cargarPeriodos();
-
-                            foreach ($periodo as $row) {
+                            foreach ($madre as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id_periodo'].'">'.$row['nombre'].' ('.$row['ponderacion'].'%)</option>
+                              <tr>
+                                  <td>'.$row["id_observacion"].'</td>
+                                  <td>'.$row["fecha"].'</td>
+                                  <td>'.$row["id_alumno"].'</td>
+                                  <td>'.$row["descripcion"].'</td>
+                                  
+                                  <td>
+                                    <a href="../registros/modificar_observacion.php?cod='.$row["id_observacion"].'" class="btn btn-warning">Modificar</a>
+                                    <a href="../scripts/eliminar_observacion.script.php?cod='.$row["id_observacion"].'" class="btn btn-danger">Eliminar</a>
+                                  </td>
+                              </tr>
 
                               ';
 
                             }
 
-
                             ?>
 
-                        
+                </tbody>
 
 
-
-
-                  </select>
-                </div>
-
-
-                <div id="datos"></div>
-            
-          <!-- /.box -->
+                
+              </table>
+              <div class="box-footer clearfix no-border">
+              <button type="button" onClick="location.href = '../listas/observacion_profesor.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nueva Observacion</button>
+              </div>
+              </div>
+          </div>
         </div>
         <!-- /.col -->
       </div>
+     
       <!-- /.row -->
     </section>
+
 
 
   </div>

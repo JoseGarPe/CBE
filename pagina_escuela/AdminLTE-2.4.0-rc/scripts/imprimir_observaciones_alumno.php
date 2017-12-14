@@ -67,12 +67,11 @@ session_start();
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
-          <table class="table table-striped">
+          <table class="table table-bordered">
             <thead>
-            <tr>
+            <tr class="success">
                   <th>Fecha</th>
                   <th>Descripcion</th>
-                  <th>Materia</th>
                   <th>Profesor</th>
             </tr>
             </thead>
@@ -86,7 +85,7 @@ session_start();
 
                             $misObservaciones = new observaciones();
                             $alumno= $_SESSION["alumno"];
-                            $observaciones = $misObservaciones->cargarObservacionesAlumno($alumno);
+                            $observaciones = $misObservaciones->cargarObservacionAlumno($alumno);
 
                             foreach ($observaciones as $row) {
                               
@@ -95,8 +94,7 @@ session_start();
                               <tr>
                                   <td>'.$row["fecha"].'</td>
                                   <td>'.$row["descripcion"].'</td>
-                                  <td>'.$row["materia"].'</td>
-                                  <td>'.$row["profesor"].'</td>
+                                   <td>'.$row["nombre"].' '.$row["apellido"].'</td>
                                   
                               </tr>
 

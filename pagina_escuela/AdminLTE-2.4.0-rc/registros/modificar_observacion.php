@@ -1,7 +1,3 @@
-<?php
-session_start();
-$alumno= $_SESSION["alumno"];
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,47 +32,18 @@ $alumno= $_SESSION["alumno"];
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<script>
-
-function mostrarInfo(cod){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/generar_notas.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
-
-}
-
-</script>
-
-
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-   <a href="index2.html" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>CB</b>E</span>
+      <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
+      <span class="logo-lg"><b>Colegio</b>BautistaEmmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -92,13 +59,13 @@ xmlhttp.send("cod_banda="+cod);
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $alumno?></span>
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -120,14 +87,15 @@ xmlhttp.send("cod_banda="+cod);
   </header>
 
 
+
   <!-- Menu -->
 
 
-  <aside class="main-sidebar">
+ <aside class="main-sidebar">
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_alumno.php";  
+    require_once "../menu_admin.php";  
      ?>
         
     </section>
@@ -135,72 +103,95 @@ xmlhttp.send("cod_banda="+cod);
 
 
 
+
   <!-- Contenedor-->
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Alumnos
-        <small>Notas del periodo</small>
+        Area mantenimiento
+        <small>Modificar de Observacion</small>
       </h1>
     </section>
-    <br>
 
-
-<section class="content">
+    
+    <section class="content">
+     
       <div class="row">
-        <div class="col-xs-12">
-          
-            
-             <div class="form-group">
-                  <label for="estado">*Selecciona una opcion para ver tus notas*</label>
-                    <br>
-                    <select onchange="mostrarInfo(this.value)" id="estado" name="estado" class="form-control select2" style="width: 25%;">
+        
+        <section class="col-lg-6 connectedSortable">
+          <div class="box box-primary">
 
-                          <option value="">--------------------------------------</option>
+            <div class="box-header with-border">
+              <br>
+              <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
+            </div>
 
-                        <?php 
-                        
+            <form role="form" action="../scripts/modificar_observacion.script.php" method="post">
+              <div class="box-body">
 
 
-                            require_once "../clases/periodo.class.php";
+                            <?php 
 
-                            $misPeriodos = new periodo();
+                            require_once "../clases/observaciones.class.php";
 
-                            $periodo = $misPeriodos->cargarPeriodos();
+                            $obs = $_GET['cod'];
 
-                            foreach ($periodo as $row) {
+                            $miMadre = new observaciones();
+
+                            $madre = $miMadre->cargarObservacion($obs);
+
+                            foreach ($madre as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id_periodo'].'">'.$row['nombre'].' ('.$row['ponderacion'].'%)</option>
+                <div class="form-group">
+                  <label for="codigo">Codigo</label>
+                  <input type="text" class="form-control" readonly value="'.$row["id_observacion"].'" id="codigo" name="codigo" disable>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" required="" value="'.$row["id_alumno"].'" id="alumno" name="alumno" placeholder="EJ.VM152233">
+                </div>
+                 <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" required="" value="'.$row["descripcion"].'" id="descripcion" name="descripcion" placeholder="Descripcion  Observacion">
+             
+                  </div>
+                 
+                
+                 
+
 
                               ';
 
                             }
 
-
                             ?>
 
-                        
-
-
-
-
-                  </select>
-                </div>
-
-
-                <div id="datos"></div>
             
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
+                  
+                
+              </div>
+              <div class="box-footer">
+                <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/observacion_profesor.php'" name="cancel" value="Cancelar" >
+              </div>
+            </form>
+
+
+
+
+
+          </div>
+        </section>
+
       </div>
-      <!-- /.row -->
+   
     </section>
-
-
+  
   </div>
+
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -214,24 +205,6 @@ xmlhttp.send("cod_banda="+cod);
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$alumno= $_SESSION["alumno"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,9 +74,9 @@ xmlhttp.send("cod_banda="+cod);
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>*</b>*</span>
+      <span class="logo-mini"><b>CB</b>E</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>***</b>***</span>
+      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -92,7 +93,7 @@ xmlhttp.send("cod_banda="+cod);
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -157,10 +158,9 @@ xmlhttp.send("cod_banda="+cod);
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+                <tr class="danger">
                   <th>Fecha</th>
                   <th>Descripcion</th>
-                  <th>Materia</th>
                   <th>Profesor</th>
                 </tr>
                 </thead>
@@ -176,7 +176,7 @@ xmlhttp.send("cod_banda="+cod);
 
                             $misObservaciones = new observaciones();
                             $alumno= $_SESSION["alumno"];
-                            $observaciones = $misObservaciones->cargarObservacionesAlumno($alumno);
+                            $observaciones = $misObservaciones->cargarObservacionAlumno($alumno);
 
                             foreach ($observaciones as $row) {
                               
@@ -185,8 +185,7 @@ xmlhttp.send("cod_banda="+cod);
                               <tr>
                                   <td>'.$row["fecha"].'</td>
                                   <td>'.$row["descripcion"].'</td>
-                                  <td>'.$row["materia"].'</td>
-                                  <td>'.$row["profesor"].'</td>
+                                  <td>'.$row["nombre"].' '.$row["apellido"].'</td>
                                   
                               </tr>
 

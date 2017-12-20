@@ -58,7 +58,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -108,7 +108,7 @@
     <section class="content-header">
       <h1>
         Areas mantenimiento
-        <small>Lista de Materias</small>
+        <small>Lista de Codigos</small>
       </h1>
     </section>
     <br>
@@ -168,6 +168,7 @@
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
+                  <th>Categoria</th>
                   <th>Operaciones</th>
                 </tr>
                 </thead>
@@ -178,25 +179,24 @@
                 
                 <?php 
 
-                            require_once "../clases/materia.class.php";
+                            require_once "../clases/codigo.class.php";
 
-                            $misMaterias = new materia();
-                            $materia = $misMaterias->cargarMateria();
+                            $codigos = new codigo();
+                            $codi = $codigos->cargarCodigo();
 
-                            foreach ($materia as $row) {
+                            foreach ($codi as $row) {
                               
                               echo '
 
                               <tr>
-                                  <td>'.$row["id_materia"].'</td>
-                                  <td>'.$row["nombre"].'</td>
+                                  <td>'.$row["id"].'</td>
+                                  <td>'.$row["codigo"].'</td>
+                                  <td>'.$row["categoria"].'</td>
                                   <td>
-                                    <a href="../registros/modificar_materia.php?cod='.$row["id_materia"].'" class="btn btn-warning">Modificar</a>
-                                    <a href="../scripts/eliminar_materia.script.php?cod='.$row["id_materia"].'" class="btn btn-danger">Eliminar</a>
+                                    <a href="../registros/modificar_codigo.php?cod='.$row["id"].'" class="btn btn-warning">Modificar</a>
+                                    <a href="../scripts/eliminar_codigo.script.php?cod='.$row["id"].'" class="btn btn-danger">Eliminar</a>
                                   </td>
-                              </tr>
-
-                              ';
+                              </tr>';
 
                             }
 
@@ -209,7 +209,7 @@
               </table>
 
               <div class="box-footer clearfix no-border">
-              <button type="button" onClick="location.href = '../registros/registro_materia.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
+              <button type="button" onClick="location.href = '../registros/registro_codigo.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
               </div>
 
             </div>

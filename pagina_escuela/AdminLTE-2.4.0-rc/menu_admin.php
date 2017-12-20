@@ -48,6 +48,7 @@
               <li><a class="" href="listas/lista_materia.php"><i class="fa fa-circle-o"></i>Materia</a></li>
               <li><a class="" href="profile.html"><i class="fa fa-circle-o"></i>Horario</a></li>
               <li><a class="" href="listas/lista_areas.php"><i class="fa fa-circle-o"></i>Areas</a></li>  
+              <li><a class="" href="listas/lista_codigo.php"><i class="fa fa-circle-o"></i>Codigos</a></li>  
           </ul>
         </li>
       </ul>

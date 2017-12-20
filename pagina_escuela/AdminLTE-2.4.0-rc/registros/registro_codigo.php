@@ -33,16 +33,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-  <a href="../indexAdmin.php" class="logo">
+    <a href="../indexAdmin.php" class="logo">
+      <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
       <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
-    </a>
+      </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
@@ -58,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -86,12 +88,10 @@
 
 
 
-
-
   <!-- Menu -->
 
 
-  <aside class="main-sidebar">
+ <aside class="main-sidebar">
     <section class="sidebar">
 
     <?php 
@@ -103,98 +103,54 @@
 
 
 
+
   <!-- Contenedor-->
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
         Areas mantenimiento
-        <small>Lista de Materias</small>
+        <small>Registro de Codigos</small>
       </h1>
     </section>
-    <br>
-    <?php 
 
-            if (isset($_GET['success'])) {
-                
-
-                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-success">
-              
-                Los datos han sido guardados exitosamente.
-             </div>
-
-                    ';
-
-                }
-
-            }elseif (isset($_GET['error'])) {
-
-               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-danger">
-              
-                Error al guardar, verifique los datos ingresados.
-             </div>
-
-                    ';
-
-                }
-
-            }
-
-
-             ?>
-  
-
-<section class="content">
+    
+    <section class="content">
+     
       <div class="row">
-        <div class="col-xs-12">
-          
-            
-            <!-- /.box-header -->
-            
+        
+        <section class="col-lg-6 connectedSortable">
+          <div class="box box-primary">
 
-          <div class="box">
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Operaciones</th>
-                </tr>
-                </thead>
+            <div class="box-header with-border">
+              <br>
+              <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
+            </div>
 
+            <form role="form" action="../scripts/registro_codigo.script.php" method="post">
+              <div class="box-body">
 
-                <tbody>
-                
-                
-                <?php 
+                                 
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
+                </div>
 
-                            require_once "../clases/materia.class.php";
+                <div class="form-group">
+                  <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" class="form-control select2" style="width: 100%;">
 
-                            $misMaterias = new materia();
-                            $materia = $misMaterias->cargarMateria();
+                       <?php 
 
-                            foreach ($materia as $row) {
+                            require_once "../clases/codigo.class.php";
+
+                            $tipo_codigo = new codigo();
+
+                            $categoria = $tipo_codigo->consultarTCodigo();
+
+                            foreach ($categoria as $row) {
                               
                               echo '
-
-                              <tr>
-                                  <td>'.$row["id_materia"].'</td>
-                                  <td>'.$row["nombre"].'</td>
-                                  <td>
-                                    <a href="../registros/modificar_materia.php?cod='.$row["id_materia"].'" class="btn btn-warning">Modificar</a>
-                                    <a href="../scripts/eliminar_materia.script.php?cod='.$row["id_materia"].'" class="btn btn-danger">Eliminar</a>
-                                  </td>
-                              </tr>
+                                  <option value="'.$row["id_tip_cod"].'">'.$row["nombre"].'</option>
 
                               ';
 
@@ -202,28 +158,28 @@
 
                             ?>
 
-                </tbody>
+                    </select>
+                </div>
 
-
-                
-              </table>
-
-              <div class="box-footer clearfix no-border">
-              <button type="button" onClick="location.href = '../registros/registro_materia.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
               </div>
 
-            </div>
-            <!-- /.box-body -->
+
+
+              <div class="box-footer">
+                <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_codigo.php'" name="cancel" value="Cancelar" >
+              </div>
+            </form>
+
           </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
+        </section>
+
       </div>
-      <!-- /.row -->
+   
     </section>
-
-
+  
   </div>
+
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -237,24 +193,6 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 
 </body>
 </html>

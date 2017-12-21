@@ -10,6 +10,7 @@ class alumno extends Conexion{
 	private $nie;
 	private $clave;
 	private $id_grado_detalle;
+	private $estado;
 
 	//Constructor de la clase
 
@@ -23,6 +24,7 @@ class alumno extends Conexion{
 		$this->nie = "";
 		$this->clave = "";
 		$this->id_grado_detalle = "";
+		$this->estado = "";
 
 	} //Fin del constructor
 

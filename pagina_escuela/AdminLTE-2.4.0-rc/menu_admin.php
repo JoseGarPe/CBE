@@ -26,6 +26,7 @@
               <li><a class="" href="profile.html"><i class="fa fa-circle-o"></i>Ponderaciones</a></li>
               <li><a class="" href="profile.html"><i class="fa fa-circle-o"></i>Periodos</a></li>
               <li><a class="" href="profile.html"><i class="fa fa-circle-o"></i>Administrador</a></li>
+              <li><a class="" href="listas/lista_profesores.php"><i class="fa fa-circle-o"></i>Profesores</a></li>
               <li><a class="" href="profile.html"><i class="fa fa-circle-o"></i>Inscripciones</a></li>
               <li><a class="" href="listas/asistencia_alumno.php"><i class="fa fa-circle-o"></i>Alumnos</a></li>
             <li class="treeview">

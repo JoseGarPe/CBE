@@ -5,7 +5,7 @@ require_once "../clases/codigo.class.php";
 
 $codigo = $_POST['codigo'];
 $nombre = $_POST['nombre'];
-$tipo_codigo = $_POST['tipo_codigo'];
+$tipo_codigo = $_POST['categoria'];
 
 
 

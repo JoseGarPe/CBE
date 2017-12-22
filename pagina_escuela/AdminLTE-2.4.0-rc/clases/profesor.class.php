@@ -45,7 +45,12 @@ class profesores extends Conexion
         }
 
 	}//agregar profesor
+		function  consultarProfesor($codigo){
 
+		$sql = $this->db->query("SELECT * FROM profesores WHERE id_profesor='$codigo'"); 
+        $profe= $sql->fetch_all(MYSQLI_ASSOC); 
+        return $profe;  
+	}// fin consultar profesores
 	function  cargarProfesor(){
 
 		$sql = $this->db->query("SELECT * FROM profesores"); 
@@ -56,6 +61,25 @@ class profesores extends Conexion
 
 		
 		$sql = $this->db->query("UPDATE profesores SET estado='$estado' WHERE id_profesor = '$codigo'"); 
+		
+        
+        if($sql == true){
+
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+
+ 
+	} //Fin
+
+	function modificarProfe($codigo,$nombre,$apellido,$dui,$celular,$correo,$direccion){
+
+		
+		$sql = $this->db->query("UPDATE profesores SET nombre='$nombre', apellido='$apellido',dui='$dui', telefono='$celular', correo='$correo', direccion='$direccion' WHERE id_profesor = '$codigo'"); 
 		
         
         if($sql == true){

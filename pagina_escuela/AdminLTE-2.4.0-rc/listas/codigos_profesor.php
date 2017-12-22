@@ -1,9 +1,11 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hotel Quality | Administracion</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>CBE | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,13 +34,39 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>   
+$(function(){
+ $("#btn_enviar").click(function(){
+  cod=$('#codigo').val();
+ var url = "../scripts/registro_codal.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#formulario").serialize(), // Adjuntar los campos del formulario enviado.
+           success: function(data)
+           {
+               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+               $('#myModal').modal('show');
+           }
+         });
+
+
+
+    return false; // Evitar ejecutar el submit del formulario.
+ });
+});
+</script>
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../indexAdmin.php" class="logo">
+   <a href="../indexAdmin.php" class="logo">
+      <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
       <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
@@ -57,13 +85,13 @@
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
               <span class="hidden-xs">****</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -85,9 +113,6 @@
   </header>
 
 
-
-
-
   <!-- Menu -->
 
 
@@ -95,7 +120,7 @@
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_admin.php";  
+    require_once "../menu_profe.php";  
      ?>
         
     </section>
@@ -107,8 +132,8 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Areas mantenimiento
-        <small>Lista de Profesores</small>
+        Profesores
+        <small>Codigos de Conducta</small>
       </h1>
     </section>
     <br>
@@ -151,97 +176,49 @@
 
 
              ?>
-  
 
 <section class="content">
+<div class="col-lg-4">
+         
+        </div>
       <div class="row">
-        <div class="col-xs-12">
-          
-            
-            <!-- /.box-header -->
-            
-
+        <div class="col-xs-4">
           <div class="box">
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Dui</th>
-                  <th>Correo</th>
-                  <th>Celular</th>
-                   <th>Direccion</th>
-                    <th>Estado</th>
-                  <th>Operaciones</th>
-                </tr>
-                </thead>
+            
+            <form role="form" method="post" id="formulario" action="">
+              <div class="box-body">
+                <label for="codigo">Codigo del alumno</label>
+                <div class="input-group">
+                  
+                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="8" minlength="8" placeholder="Ej. VM152233">
+                  <span class="input-group-btn">
+                       <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+                  </span>
+                </div>
 
-
-                <tbody>
-                
-                
-                <?php 
-
-                            require_once "../clases/profesor.class.php";
-
-                            $profes = new profesores();
-
-                            $profesores = $profes->cargarProfesor();
-
-                            foreach ($profesores as $row) {
-                              
-                              echo '
-
-                              <tr>
-                                  <td>'.$row["id_profesor"].'</td>
-                                  <td>'.$row["nombre"].'</td>
-                                  <td>'.$row["apellido"].'</td>
-
-                                   <td>'.$row["dui"].'</td>
-                                  <td>'.$row["correo"].'</td>
-                                  <td>'.$row["telefono"].'</td>  
-                                  <td>'.$row["direccion"].'</td>   
-                                  <td>'.$row["estado"].'</td>  
-                                  <td>
-                                    <a href="../registros/modificar_profe.php?cod='.$row["id_profesor"].'" class="btn btn-warning">Modificar</a>
-                              ';
-                              if ($row["estado"]=="Activo") {
-                                echo'<a href="../scripts/eliminar_profe.script.php?cod='.$row["id_profesor"].'&estado=Inactivo" class="btn btn-danger">Desactivar</a>
-                                  </td>
-                              </tr>';
-                                # code...
-                              } else{
-                                echo'<a href="../scripts/eliminar_profe.script.php?cod='.$row["id_profesor"].'&estado=Activo" class="btn btn-info">Activar</a>
-                                  </td>
-                              </tr>';
-
-                              }
-
-                            }
-
-                            ?>
-
-                </tbody>
-
-
-                
-              </table>
-
-              <div class="box-footer clearfix no-border">
-              <button type="button" onClick="location.href = '../registros/registro_profesores.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
+              <div class="box-footer">
+            
               </div>
-
-            </div>
-            <!-- /.box-body -->
-          </div>
+              </div>
+            </form> 
+           </div>          
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
+
+
+<section class="content">
+      <div class="row">
+          <div id="respuesta"></div>
+        <!-- /.col -->
+      </div>
+     
+      <!-- /.row -->
+    </section>
+
 
 
   </div>

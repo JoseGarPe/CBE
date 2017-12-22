@@ -10,6 +10,7 @@ session_start();
                   <th>Codigo</th>
                   <th>Nombre</th>
                   <th>Observaciones</th>
+                  <th>Codigos</th>
           
                 </tr>
                 </thead>
@@ -42,6 +43,9 @@ session_start();
                                   <td>
                                     <a href="../listas/lista_osbalum.php?cod='.$row["id_alumno"].'" class="btn btn-warning">Mostrar</a>
                                   </td>
+                                  <td>
+                                    <a href="../listas/lista_codialums.php?cod='.$row["id_alumno"].'" class="btn btn-danger">Mostrar</a>
+                                  </td>
                               </tr>
 
                               ';
@@ -55,6 +59,8 @@ session_start();
                   
                 </div>
                  <button type="button" onClick="location.href = '../listas/observacion_profesor.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nueva Observacion</button>
+              
+                 <button type="button" onClick="location.href = '../listas/codigos_profesor.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nuevo Codigo</button>
              
                 
               </table>

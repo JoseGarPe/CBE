@@ -30,7 +30,7 @@ class codigo extends Conexion
 
         }
 
-	}//agregar madre
+	}//agregar codigo
 
 	function  consultarCodigo($codigo){
 

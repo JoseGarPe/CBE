@@ -1,9 +1,13 @@
+<?php
+session_start();
+$alumno= $_GET['cod'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hotel Quality | Administracion</title>
+  <title>**** | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,16 +36,47 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+<script>
+
+function mostrarInfo(cod){
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("datos").innerHTML=xmlhttp.responseText;
+    }else{ 
+  document.getElementById("datos").innerHTML='Cargando...';
+    }
+  }
+xmlhttp.open("POST","../scripts/generar_notas.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("cod_banda="+cod);
+
+}
+
+</script>
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../indexAdmin.php" class="logo">
-      <span class="logo-mini"><b>C</b>BE</span>
+    <a href="index2.html" class="logo">
+      <!-- mini logo  -->
+      <span class="logo-mini"><b>CB</b>E</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
+      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -58,7 +93,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Profesor</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -85,9 +120,6 @@
   </header>
 
 
-
-
-
   <!-- Menu -->
 
 
@@ -95,7 +127,7 @@
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_admin.php";  
+    require_once "../menu_profe.php";  
      ?>
         
     </section>
@@ -107,51 +139,12 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Areas mantenimiento
-        <small>Lista de Profesores</small>
+        Alumnos
+        <small>Observaciones</small>
       </h1>
     </section>
     <br>
-    <?php 
 
-            if (isset($_GET['success'])) {
-                
-
-                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-success">
-              
-                Los datos han sido guardados exitosamente.
-             </div>
-
-                    ';
-
-                }
-
-            }elseif (isset($_GET['error'])) {
-
-               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-danger">
-              
-                Error al guardar, verifique los datos ingresados.
-             </div>
-
-                    ';
-
-                }
-
-            }
-
-
-             ?>
-  
 
 <section class="content">
       <div class="row">
@@ -165,16 +158,13 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
+                <tr class="danger">
+                  <th>ID</th>
+                  <th>Profesor</th>
                   <th>Codigo</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Dui</th>
-                  <th>Correo</th>
-                  <th>Celular</th>
-                   <th>Direccion</th>
-                    <th>Estado</th>
-                  <th>Operaciones</th>
+                  <th>Tipo</th>
+                  <th>Fecha</th>
+                
                 </tr>
                 </thead>
 
@@ -184,40 +174,28 @@
                 
                 <?php 
 
-                            require_once "../clases/profesor.class.php";
+                            
+                            require_once "../clases/codigo_alumno.class.php";
 
-                            $profes = new profesores();
+                            $misCodigos_al = new codigo_alumno();
+                            $alumno= $_GET['cod'];
+                            $_SESSION["alumno"] = $alumno;
+                            $codigos = $misCodigos_al->consultarCodigoAlumno($alumno);
 
-                            $profesores = $profes->cargarProfesor();
-
-                            foreach ($profesores as $row) {
+                            foreach ($codigos as $row) {
                               
                               echo '
 
                               <tr>
-                                  <td>'.$row["id_profesor"].'</td>
-                                  <td>'.$row["nombre"].'</td>
-                                  <td>'.$row["apellido"].'</td>
+                                  <td>'.$row["id_cod_al"].'</td>
+                                  <td>'.$row["nompro"].' '.$row["apelpro"].'</td>
+                                  <td>'.$row["codigoo"].'</td>
+                                  <td>'.$row["tipo"].'</td>
+                                  <td>'.$row["fecha"].'</td>
+                                  
+                              </tr>
 
-                                   <td>'.$row["dui"].'</td>
-                                  <td>'.$row["correo"].'</td>
-                                  <td>'.$row["telefono"].'</td>  
-                                  <td>'.$row["direccion"].'</td>   
-                                  <td>'.$row["estado"].'</td>  
-                                  <td>
-                                    <a href="../registros/modificar_profe.php?cod='.$row["id_profesor"].'" class="btn btn-warning">Modificar</a>
                               ';
-                              if ($row["estado"]=="Activo") {
-                                echo'<a href="../scripts/eliminar_profe.script.php?cod='.$row["id_profesor"].'&estado=Inactivo" class="btn btn-danger">Desactivar</a>
-                                  </td>
-                              </tr>';
-                                # code...
-                              } else{
-                                echo'<a href="../scripts/eliminar_profe.script.php?cod='.$row["id_profesor"].'&estado=Activo" class="btn btn-info">Activar</a>
-                                  </td>
-                              </tr>';
-
-                              }
 
                             }
 
@@ -229,8 +207,12 @@
                 
               </table>
 
-              <div class="box-footer clearfix no-border">
-              <button type="button" onClick="location.href = '../registros/registro_profesores.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
+              <div class="row no-print">
+                <div class="col-xs-12">
+                  <a href="../scripts/imprimir_observaciones_alumno.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
+                  <a href="../listas/lista_alumnos.php" class="btn btn-default pull-right"><i class="glyphicon glyphicon-user"></i> Alumnos</a>
+                 
+                </div>
               </div>
 
             </div>

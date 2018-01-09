@@ -1,0 +1,62 @@
+.countdown{
+	position: relative;
+	top: 0 !important;
+	right: 0;
+	text-align: right;
+}
+.mine{
+	width: 50%;
+	right: 0;
+	margin-top: 10px;
+	padding-left: 2%;
+	position: absolute;
+	display: block;
+}
+#container{
+	border-top:1px solid blue !important;
+	margin-top: 10%;
+}
+
+html, body {
+	height: 100%;
+}
+
+.countdown-container {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+}
+
+.clock-item .inner {
+	height: 0px;
+	padding-bottom: 100%;
+	position: relative;	
+	width: 100%;
+}
+
+.clock-canvas {
+	background-color: rgba(255, 255, 255, .1);
+	border-radius: 50%;
+	height: 0px;
+	padding-bottom: 100%;
+}
+
+.text {	
+	font-weight: bold;	
+	margin-top: -50px;
+	position: absolute;
+	top: 50%;
+	text-align: center;
+	width: 100%;
+}
+
+.text .val {
+	font-size: 20px;
+}
+
+.text .type-time {
+	font-size: 15px;
+}

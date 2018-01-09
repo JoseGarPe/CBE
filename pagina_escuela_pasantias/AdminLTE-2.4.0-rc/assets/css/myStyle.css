@@ -1,0 +1,169 @@
+body{
+	overflow-x: hidden;
+}
+.question{
+	border: outset;
+	border-color: #915d28;
+	border-width: 4px;
+	position: relative;
+	left: 0;
+}
+.close{
+	background-color: #ff0000;
+	color: white !important;
+	padding: 3px;
+	opacity: 1 !important;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.close:hover{
+	padding: 4px;
+	cursor: pointer;
+}
+.question-header{
+	border:1px solid blue;
+	position: relative;
+	height: auto;
+	background-color: #2d62ad;
+	text-align: center;
+	color: white;
+}
+.question{
+	margin: 3%;
+	-webkit-transition: all 0.5s ease;
+  	-moz-transition: all 0.5s ease;
+  	-o-transition: all 0.5s ease;
+  	transition: all 0.5s ease;
+}
+#time{
+	width: 23%;
+	margin: 0 auto;
+}
+#options{
+	margin: 3%;
+	text-align: right;
+}
+h1{
+	margin-left: 1em;
+}
+.containerAlumno{
+	padding: 0;
+	border: outset;
+	border-color: brown;
+	margin: 2em auto;
+	width: 80%;
+}
+.heading h2{
+	position: relative;
+}
+.heading{
+	background-color: skyblue;
+	padding: 2%;
+	width: 100%;
+}
+.icon{
+	position: absolute;
+	right: 0;
+	margin: auto;
+	height: 100%;
+}
+.more{
+	width: 100%;	
+}
+table{ 
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: outset;
+}
+th,td{
+	padding: 5px; 
+}
+th{
+	text-align: center !important;
+}
+tr > th{
+	background-color: green;
+	color: white;
+}
+.perfilImg{
+	height: 120px;
+	width: auto;
+	border-radius: 5px;
+	margin-right: 2em;
+}
+.center{
+	margin: 0 auto;
+}
+h4{
+	margin: 0;
+}
+.progress{
+	margin: 0;
+}
+.progress-row{
+	margin: 0;
+	padding: 0 8px;
+}
+.inline{
+	display: inline-block;
+}
+#info{
+	text-align: center;
+	margin-top: 2%;
+}
+.inline{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2%;
+}
+.scores{
+	margin: 2% auto;
+}
+.results{
+	background-color: pink;
+}
+#alumno{
+	margin-top: 1%;
+}
+.th2{
+	background-color:lightblue;
+	color:black;
+}
+.report > th{
+	background-color: black !important;
+	color: white;
+}
+.promedio, .tittleTab{
+	background-color: gray;
+	color: white;
+	text-align: center
+}
+.containerReport{
+	padding: 0;
+	border: outset;
+	border-color: black;
+	margin: 2em auto;
+	width: 80%;
+}
+.optCenter{
+	text-align: center;
+}
+.centerButton{
+	border: none;
+	background-color: #8796ff;
+	color: white;
+	padding: 10px;
+	margin: 0 auto;
+}
+@media print {
+	
+	.optCenter{
+		display: none;
+	}
+	.promedio, .tittleTab{
+		background-color: gray;
+		color: white;
+		text-align: center
+	}
+}

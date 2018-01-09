@@ -1,0 +1,20 @@
+
+
+.modal-header{
+	color:white !important;
+	background:linear-gradient(#ff9500, #f1b458);;
+	padding:1%;
+	text-align: center;
+}
+.form{
+	border:solid #f7f7f9;
+	margin-top:0px !important;
+}
+legend{
+	margin-bottom: 0px !important
+}
+body{
+	background: white;
+}
+
+

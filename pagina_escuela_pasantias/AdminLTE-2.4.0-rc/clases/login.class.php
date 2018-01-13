@@ -38,7 +38,7 @@ function login($usuario, $password){
 		//Consulta
 		$sql = $this->db->query("SELECT * FROM alumno WHERE id_alumno = '".$this->id."' AND clave = '".$this->password."' ");
 		$sql2 = $this->db->query("SELECT * FROM profesores WHERE id_profesor = '".$this->id."' AND clave = '".$this->password."' ");
-		$sql3 = $this->db->query("SELECT * FROM administrador WHERE id_administrador = '".$this->id."' AND clave = '".$this->password."' ");
+		$sql3 = $this->db->query("SELECT * FROM administrador WHERE id_administrador = '".$this->id."' AND clave = '".$this->password."' AND estado  = 'Activo'");
 
 
 		//Verifico si encuentra un usuario igual

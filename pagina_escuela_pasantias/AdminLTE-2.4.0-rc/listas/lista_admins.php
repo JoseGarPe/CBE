@@ -1,13 +1,9 @@
-<?php
-session_start();
-$alumno = $_SESSION['alumno'];
-?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CBE | Portal Web</title>
+  <title>CEB | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -36,50 +32,16 @@ $alumno = $_SESSION['alumno'];
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<script>
-
-
-// Esta funcion sirve para generar las tablas de notas.
-
-function mostrarInfo(cod){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/generar_notas.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
-
-}
-
-</script>
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo  -->
+    <a href="../indexAdmin.php" class="logo">
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
+      <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -95,13 +57,13 @@ xmlhttp.send("cod_banda="+cod);
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $alumno?></span>
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">****</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -123,6 +85,9 @@ xmlhttp.send("cod_banda="+cod);
   </header>
 
 
+
+
+
   <!-- Menu -->
 
 
@@ -130,7 +95,7 @@ xmlhttp.send("cod_banda="+cod);
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_alumno.php";  
+    require_once "../menu_admin.php";  
      ?>
         
     </section>
@@ -142,59 +107,126 @@ xmlhttp.send("cod_banda="+cod);
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Alumnos
-        <small>Notas del periodo</small>
+        Profesores
+        <small>Lista de Administradores</small>
       </h1>
     </section>
     <br>
+    <?php 
 
+            if (isset($_GET['success'])) {
+                
+
+                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-success">
+              
+                Los datos han sido guardados exitosamente.
+             </div>
+
+                    ';
+
+                }
+
+            }elseif (isset($_GET['error'])) {
+
+               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-danger">
+              
+                Error al guardar, verifique los datos ingresados.
+             </div>
+
+                    ';
+
+                }
+
+            }
+
+
+             ?>
+  
 
 <section class="content">
       <div class="row">
         <div class="col-xs-12">
           
             
-             <div class="form-group">
-                  <label for="estado">*Selecciona una opcion para ver tus notas*</label>
-                    <br>
-                    <select onchange="mostrarInfo(this.value)" id="estado" name="estado" class="form-control select2" style="width: 25%;">
+            <!-- /.box-header -->
+            
 
-                          <option value="">--------------------------------------</option>
+          <div class="box">
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Estado</th>
+                  <th>Operaciones</th>
+                </tr>
+                </thead>
 
-                        <?php 
-                        
 
+                <tbody>
+                
+                
+                <?php 
 
-                            require_once "../clases/periodo.class.php";
+                            require_once "../clases/administrador.class.php";
 
-                            $misPeriodos = new periodo();
+                            $admins = new administrador();
 
-                            $periodo = $misPeriodos->cargarPeriodos();
+                            $administradores = $admins->cargarAdmins();
 
-                            foreach ($periodo as $row) {
+                            foreach ($administradores as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id_periodo'].'">'.$row['nombre'].' ('.$row['ponderacion'].'%)</option>
-
+                              <tr>
+                                  <td>'.$row["id_administrador"].'</td>
+                                  <td>'.$row["nombre"].'</td>
+                                  <td>'.$row["apellido"].'</td>
+                                  <td>'.$row["estado"].'</td>  
+                                  <td>
+                                    <a href="../registros/modificar_admin.php?cod='.$row["id_administrador"].'" class="btn btn-warning">Modificar</a>
                               ';
+                              if ($row["estado"]=="Activo") {
+                                echo'<a href="../scripts/eliminar_admin.script.php?cod='.$row["id_administrador"].'&estado=Inactivo" class="btn btn-danger">Desactivar</a>
+                                  </td>
+                              </tr>';
+                                # code...
+                              } else{
+                                echo'<a href="../scripts/eliminar_admin.script.php?cod='.$row["id_administrador"].'&estado=Activo" class="btn btn-info">Activar</a>
+                                  </td>
+                              </tr>';
+
+                              }
 
                             }
 
-
                             ?>
 
-                        
+                </tbody>
 
 
+                
+              </table>
 
+              <div class="box-footer clearfix no-border">
+              <button type="button" onClick="location.href = '../registros/registro_admin.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
+              </div>
 
-                  </select>
-                </div>
-
-
-                <div id="datos"></div>
-            
+            </div>
+            <!-- /.box-body -->
+          </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->

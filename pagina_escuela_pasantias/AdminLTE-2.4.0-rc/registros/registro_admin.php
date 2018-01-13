@@ -39,7 +39,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+      <a href="../indexAdmin.php" class="logo">
       <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
@@ -60,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -108,16 +108,12 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asesores legales
-        <small>Registro de Padres</small>
+        Profesores
+        <small>Registro de Administrador</small>
       </h1>
     </section>
 
-    
-    <section class="content">
-     
-      <div class="row">
-        
+
         <section class="col-lg-6 connectedSortable">
           <div class="box box-primary">
 
@@ -126,7 +122,7 @@
               <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
             </div>
 
-            <form role="form" action="../scripts/registro_padres.script.php" method="post">
+            <form role="form" action="../scripts/registro_admin.script.php" method="post">
               <div class="box-body">
 
                 <div class="form-group">
@@ -138,42 +134,30 @@
                   <label for="nombre">Nombre</label>
                   <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
                 </div>
-              
-              <div class="form-group">
+            
+                <div class="form-group">
                   <label for="nombre">Apellido</label>
                   <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
                 </div>
-           
-              <div class="form-group">
-                  <label for="nombre">Dui</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
+
+                <div class="form-group">
+                  <label for="nombre">Contraseña</label>
+                  <input type="password" class="form-control" required="" id="clave" name="clave" placeholder="*****">
                 </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Correo</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Celular</label>
-                  <input type="text" class="form-control" required="" id="celular" name="celular" placeholder="Celular">
-                </div>
-              </div>
+
+            </div>
+            
+
+
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_padres.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_admins.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
-
+            </div>
           </div>
-        </section>
-
-      </div>
+    
    
-    </section>
-  
-  </div>
-
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>

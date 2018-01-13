@@ -1,5 +1,6 @@
 <?php
 session_start();
+$alumno = $_SESSION['alumno'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,7 +93,7 @@ xmlhttp.send("cod_banda="+cod);
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->

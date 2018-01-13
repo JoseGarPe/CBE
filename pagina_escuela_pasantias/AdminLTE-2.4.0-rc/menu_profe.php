@@ -18,7 +18,7 @@
         </li>
         <li><a href="#"><i class="fa fa-pie-chart"></i> <span>Notas</span></a></li>
         <li><a href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/observacion_profesor2.php"><i class="fa fa-edit"></i> <span>Conducta</span></a></li>
-
+        <li> <a href="../registros/contra_profe.php"><i class="glyphicon glyphicon-random"></i>    Cambiar Contraseña</a></li>      
 
       </ul>
 

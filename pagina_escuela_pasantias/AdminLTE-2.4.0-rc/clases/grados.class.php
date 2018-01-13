@@ -26,8 +26,33 @@ function cargarGrados($profesor){
         return $grado;  
  
 	} //Fin
+	function cargarGrado(){
+
+		$sql = $this->db->query('SELECT * FROM grado'); 
+        $grado = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $grado;  
+ 
+	} //Fin
+	function cargarGradoNom($codigo){
+
+		$sql = $this->db->query("SELECT * FROM grado WHERE id_grado='$codigo'"); 
+        $grado = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $grado;  
+ 
+	} //Fin
 
 
+function cargarAlumnosGrado($grado,$seccion){
+
+		$sql = $this->db->query("SELECT alumno.id_alumno,alumno.nombre,alumno.estado,alumno.apellido,detalle_grado.id_grado,detalle_grado.id_seccion
+								 FROM lice.alumno alumno
+       							INNER JOIN lice.detalle_grado detalle_grado
+         						 ON (alumno.id_detalle_grado = detalle_grado.id_detalle_grado)
+             					WHERE detalle_grado.id_grado =  '$grado' AND detalle_grado.id_seccion='$seccion'"); 
+        $alumnos = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $alumnos;  
+ 
+	} //Fin
 }
 
  ?>

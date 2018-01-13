@@ -60,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -108,8 +108,8 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asesores legales
-        <small>Registro de Padres</small>
+        Alumnos
+        <small>Modificar de Alumno</small>
       </h1>
     </section>
 
@@ -126,44 +126,94 @@
               <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
             </div>
 
-            <form role="form" action="../scripts/registro_padres.script.php" method="post">
+            <form role="form" action="../scripts/modificar_alumno.script.php" method="post">
               <div class="box-body">
+
+
+                            <?php 
+
+                            require_once "../clases/alumno.class.php";
+
+                            $codigo = $_GET['cod'];
+
+                            $miAlumno = new alumno();
+
+                            $alumno = $miAlumno->consultarAlumno($codigo);
+
+                            foreach ($alumno as $row) {
+                              
+                              echo '
 
                 <div class="form-group">
                   <label for="codigo">Codigo</label>
-                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="5" minlength="5" placeholder="Ej. CO002">
+                  <input type="text" class="form-control" readonly value="'.$row["id_alumno"].'" id="codigo" name="codigo" maxlength="5" minlength="5">
                 </div>
                   
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
+                  <input type="text" class="form-control" required="" value="'.$row["nombre"].'" id="nombre" name="nombre" placeholder="Nombre">
                 </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Apellido</label>
-                  <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
+                 <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" required="" value="'.$row["apellido"].'" id="apellido" name="apellido" placeholder="Apellido">
                 </div>
-           
-              <div class="form-group">
-                  <label for="nombre">Dui</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
+                 <div class="form-group">
+                  <label for="nombre">Nie</label>
+                  <input type="text" class="form-control" required="" value="'.$row["nie"].'" id="nie" name="nie" placeholder="Apellido">
                 </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Correo</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
+                <div class="form-group">
+                  <label for="nombre">Clave</label>
+                  <input type="text" class="form-control" required="" value="'.$row["clave"].'" id="clave" name="clave" placeholder="Apellido">
                 </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Celular</label>
-                  <input type="text" class="form-control" required="" id="celular" name="celular" placeholder="Celular">
-                </div>
+                              ';
+
+                   echo '<div class="form-group">
+                                      <label for="categoria">Grado/Seccion</label>
+                                        <select id="id_detalle_grado" name="id_detalle_grado" class="form-control select2" style="width: 100%;">';
+                                   $gradoo = new alumno();
+
+                                   $categoria = $gradoo->cargarDetalleGrados();
+
+
+                                        foreach ($categoria as $raw) {
+                                                
+                                                if ($row["id"]==$raw["id"]) {
+                                                        
+                                                      echo '
+                                                          <option selected value="'.$raw["id"].'">'.$raw["grado"].' '.$raw['seccion'].'</option>
+                                                          ';
+
+                                                }else{
+
+                                                     echo '
+                                                          <option selected value="'.$raw["id"].'">'.$raw["grado"].' '.$raw['seccion'].'</option>
+                                                          ';
+
+                                                }        
+
+                                                                      }
+
+                               echo'        
+                                 </select>
+                               </div>';
+
+                            }
+
+                            ?>
+
+            
+                  
+                
               </div>
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_padres.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_admins.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
+
+
+
+
 
           </div>
         </section>

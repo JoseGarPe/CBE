@@ -98,7 +98,22 @@ class profesores extends Conexion
  
 	} //Fin
 
+	function modificarContra($codigo,$clave){
+		$password = hash('sha256', $clave);
+		
+		$sql = $this->db->query("UPDATE profesores SET clave='$password' WHERE id_profesor = '$codigo'"); 
+		
+        
+        if($sql == true){
 
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+     } //Fin
 
 
 

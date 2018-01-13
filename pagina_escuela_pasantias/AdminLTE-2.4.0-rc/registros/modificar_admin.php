@@ -60,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -108,8 +108,8 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asesores legales
-        <small>Registro de Padres</small>
+        Profesores
+        <small>Modificar de Administrador</small>
       </h1>
     </section>
 
@@ -126,44 +126,56 @@
               <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
             </div>
 
-            <form role="form" action="../scripts/registro_padres.script.php" method="post">
+            <form role="form" action="../scripts/modificar_admin.script.php" method="post">
               <div class="box-body">
+
+
+                            <?php 
+
+                            require_once "../clases/administrador.class.php";
+
+                            $codigo = $_GET['cod'];
+
+                            $miAdmin = new administrador();
+
+                            $admin = $miAdmin->consultarAdmin($codigo);
+
+                            foreach ($admin as $row) {
+                              
+                              echo '
 
                 <div class="form-group">
                   <label for="codigo">Codigo</label>
-                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="5" minlength="5" placeholder="Ej. CO002">
+                  <input type="text" class="form-control" readonly value="'.$row["id_administrador"].'" id="codigo" name="codigo" maxlength="5" minlength="5">
                 </div>
                   
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
+                  <input type="text" class="form-control" required="" value="'.$row["nombre"].'" id="nombre" name="nombre" placeholder="Nombre">
                 </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Apellido</label>
-                  <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
+                 <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" required="" value="'.$row["apellido"].'" id="apellido" name="apellido" placeholder="Apellido">
                 </div>
-           
-              <div class="form-group">
-                  <label for="nombre">Dui</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Correo</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Celular</label>
-                  <input type="text" class="form-control" required="" id="celular" name="celular" placeholder="Celular">
-                </div>
+                              ';
+
+                            }
+
+                            ?>
+
+            
+                  
+                
               </div>
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_padres.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_admins.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
+
+
+
+
 
           </div>
         </section>

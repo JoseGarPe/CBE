@@ -39,7 +39,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+      <a href="../listas/indexAdmin.php" class="logo">
       <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
@@ -60,7 +60,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">Profesor</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -95,7 +95,7 @@
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_admin.php";  
+    require_once "../menu_profe.php";  
      ?>
         
     </section>
@@ -108,16 +108,33 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asesores legales
-        <small>Registro de Padres</small>
+        Profesores
+        <small>Cambio de contraseña</small>
       </h1>
     </section>
+    <br>
+    <?php
+                if ((isset($_GET['error2']))) {
+                  # code...
+                
 
-    
-    <section class="content">
-     
-      <div class="row">
-        
+                if ($_GET['error2']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-danger">
+              
+               Contraseñas no coinciden.
+             </div>
+
+                    ';
+
+                }
+              }
+              
+?>
+
         <section class="col-lg-6 connectedSortable">
           <div class="box box-primary">
 
@@ -126,56 +143,32 @@
               <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
             </div>
 
-            <form role="form" action="../scripts/registro_padres.script.php" method="post">
+            <form role="form" action="../scripts/modificar_contraprofe.script.php" method="post">
               <div class="box-body">
+                <div class="form-group">
+                  <label for="nombre">Contraseña</label>
+                  <input type="password" class="form-control" required="" id="clave1" name="clave1" placeholder="*****">
+                </div>
+              
+                <div class="form-group">
+                  <label for="nombre">Confirmar Contraseña</label>
+                  <input type="password" class="form-control" required="" id="clave2" name="clave2" placeholder="*****">
+                </div>
 
-                <div class="form-group">
-                  <label for="codigo">Codigo</label>
-                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="5" minlength="5" placeholder="Ej. CO002">
-                </div>
-                  
-                <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Apellido</label>
-                  <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
-                </div>
-           
-              <div class="form-group">
-                  <label for="nombre">Dui</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Correo</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Celular</label>
-                  <input type="text" class="form-control" required="" id="celular" name="celular" placeholder="Celular">
-                </div>
-              </div>
+            </div>
+            
+
+
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_padres.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_admins.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
-
+            </div>
           </div>
-        </section>
-
-      </div>
+    
    
-    </section>
-  
-  </div>
 
-
-<!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -187,6 +180,9 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 </body>
 </html>

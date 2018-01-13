@@ -24,10 +24,10 @@
           <ul class="treeview-menu">
               <li><a class="" href="#"><i class="fa fa-circle-o"></i>Actividades</a></li>
               <li><a class="" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_periodo.php"><i class="fa fa-circle-o"></i>Periodos</a></li>
-              <li><a class="" href="#"><i class="fa fa-circle-o"></i>Administrador</a></li>
+              <li><a class="" href="../listas/lista_admins.php"><i class="fa fa-circle-o"></i>Administrador</a></li>
               <li><a class="" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_profesores.php"><i class="fa fa-circle-o"></i>Profesores</a></li>
               <li><a class="" href="#"><i class="fa fa-circle-o"></i>Inscripciones</a></li>
-              <li><a class="" href="#"><i class="fa fa-circle-o"></i>Alumnos</a></li>
+              <li><a class="" href="../listas/lista_alumno.php"><i class="fa fa-circle-o"></i>Alumnos</a></li>
             <li class="treeview">
                   <a href="#">
                     <i class="fa fa-book"></i> <span>Asesores legales</span>
@@ -36,9 +36,9 @@
                    </span>
                  </a>
                 <ul class="treeview-menu">
-                    <li> <a class="dropdown-item" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_responsables.php">Responsables</a></li>
-                    <li> <a class="dropdown-item" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_madres.php">Madres</a></li>
-                   <li>  <a class="dropdown-item" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_padres.php">Padres</a></li>
+                    <li> <a class="dropdown-item" href="../listas/lista_responsables.php">Responsables</a></li>
+                    <li> <a class="dropdown-item" href="../listas/lista_madres.php">Madres</a></li>
+                   <li>  <a class="dropdown-item" href="../listas/lista_padres.php">Padres</a></li>
                 </ul>
                </li>
               <li><a class="" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_ma.php"><i class="fa fa-circle-o"></i>Mensualidades</a></li>
@@ -48,6 +48,9 @@
               <li><a class="" href="#"><i class="fa fa-circle-o"></i>Horario</a></li>
               <li><a class="" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_area.php"><i class="fa fa-circle-o"></i>Areas</a></li>  
               <li><a class="" href="/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_codigo.php"><i class="fa fa-circle-o"></i>Codigos</a></li>  
-          </ul>
+              <li><a href="../registros/contra_admins.php"><i class="glyphicon glyphicon-random"></i>    Cambiar Contraseña</a></li>      
+           </ul>
         </li>
+
+       
       </ul>

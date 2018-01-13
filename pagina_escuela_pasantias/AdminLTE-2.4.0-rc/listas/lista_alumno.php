@@ -1,9 +1,11 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CBE | Administracion</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>**** | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -32,8 +34,63 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-</head>
+<script>
 
+function mostrarInfo(cod){
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("datos").innerHTML=xmlhttp.responseText;
+    }else{ 
+  document.getElementById("datos").innerHTML='Cargando...';
+    }
+  }
+xmlhttp.open("POST","../scripts/secciones.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("grado="+cod);
+
+document.getElementById("grado").value=cod;
+}
+
+function mostrarLista(cod){
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("datos2").innerHTML=xmlhttp.responseText;
+    }else{ 
+  document.getElementById("datos2").innerHTML='Cargando...';
+    }
+  }
+
+xmlhttp.open("POST","../listas/alumnos_gs.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("cod_banda="+cod);
+document.getElementById("seccion").value=cod;
+
+}</script>
+
+
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -41,9 +98,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>C</b>BE</span>
+      <span class="logo-mini"><b>*</b>*</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
+      <span class="logo-lg"><b>***</b>***</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -59,13 +116,13 @@
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
               <span class="hidden-xs">****</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -87,11 +144,10 @@
   </header>
 
 
-
   <!-- Menu -->
 
 
- <aside class="main-sidebar">
+  <aside class="main-sidebar">
     <section class="sidebar">
 
     <?php 
@@ -103,77 +159,84 @@
 
 
 
-
   <!-- Contenedor-->
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Asesores legales
-        <small>Registro de Padres</small>
+       Lista de Alumnos
       </h1>
     </section>
+    <br>
 
-    
-    <section class="content">
-     
+
+<section class="content">
       <div class="row">
-        
-        <section class="col-lg-6 connectedSortable">
-          <div class="box box-primary">
-
-            <div class="box-header with-border">
-              <br>
-              <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
-            </div>
-
-            <form role="form" action="../scripts/registro_padres.script.php" method="post">
-              <div class="box-body">
-
-                <div class="form-group">
-                  <label for="codigo">Codigo</label>
-                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="5" minlength="5" placeholder="Ej. CO002">
-                </div>
+        <div class="col-xs-12">
+            <div class="box">
+           <div class="box-body">
+             <button type="button" onClick="location.href = '../registros/registro_alumno.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nueva Alumno</button>
+              
+                
+             <div class="form-group">
                   
+                    <br>
+                    <select onchange="mostrarInfo(this.value)" id="cod" name="cod" class="form-control select2" style="width: 25%;">
+
+                          <option value="">Selecciona un grado</option>
+
+                        <?php 
+                        
+
+
+                            require_once "../clases/grados.class.php";
+
+                            $misGrados = new grado();
+                            
+                            $grado = $misGrados->cargarGrado();
+
+                            foreach ($grado as $row) {
+                              
+                              echo '
+
+                              <option value="'.$row['id_grado'].'">'.$row['nombre'].'</option>
+
+
+                              ';
+
+                            }
+
+
+                            ?>
+
+
+                  </select>
+
+                </div>
+
                 <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Apellido</label>
-                  <input type="text" class="form-control" required="" id="apellido" name="apellido" placeholder="Apellido">
-                </div>
-           
-              <div class="form-group">
-                  <label for="nombre">Dui</label>
-                  <input type="text" class="form-control" required="" id="dui" name="dui" placeholder="DUI">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Correo</label>
-                  <input type="text" class="form-control" required="" id="correo" name="correo" placeholder="ejemplo@mail.com">
-                </div>
-              
-              <div class="form-group">
-                  <label for="nombre">Celular</label>
-                  <input type="text" class="form-control" required="" id="celular" name="celular" placeholder="Celular">
-                </div>
-              </div>
-              <div class="box-footer">
-                <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_padres.php'" name="cancel" value="Cancelar" >
-              </div>
-            </form>
+               
+                    <div id="datos"></div>
 
-          </div>
-        </section>
+                </div>
+                </br>
+      
+            <div class="box-footer">
+            
+              </div>
+           </div>
+        </div>
 
+                
+            
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
       </div>
-   
+      <!-- /.row -->
     </section>
-  
-  </div>
 
+
+  </div>
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -187,6 +250,24 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 
 </body>
 </html>

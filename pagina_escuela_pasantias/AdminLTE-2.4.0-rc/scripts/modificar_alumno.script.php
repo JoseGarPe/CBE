@@ -14,7 +14,7 @@ $id_detalle_grado=$_POST['id_detalle_grado'];
     $alumno = new alumno();
 
     //Envio los datos al método    
-    $verificar = $alumno->modificarAlumno($codigo,$nombre,$apellido,$nie,$clave,$id_grado_detalle);
+    $verificar = $alumno->modificarAlumno($codigo,$nombre,$apellido,$nie,$clave,$id_detalle_grado);
 
 
       if ($verificar == true) {

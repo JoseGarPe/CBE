@@ -108,7 +108,7 @@
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Profesores
+        Administradores
         <small>Modificar de Administrador</small>
       </h1>
     </section>

@@ -1,12 +1,13 @@
 <?php
 session_start();
+$alumno = $_SESSION['alumno'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CEB | Alumnos</title>
+ <title>CBE | Portal Web</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -44,9 +45,9 @@ session_start();
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>C</b>EB</span>
+      <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>C</b>EB</span>
+      <span class="logo-lg"><b>C</b>BE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -63,7 +64,7 @@ session_start();
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -71,7 +72,7 @@ session_start();
                 <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
-                  ****
+                  <?php echo $alumno?>
                 </p>
               </li>
 
@@ -131,6 +132,8 @@ session_start();
                 <tr>
                   <th>Fecha</th>
                   <th>Profesor</th>
+                  <th>Codigo</th>
+                  <th>Categoria</th>
                   <th>Descripcion</th>
                 </tr>
                 </thead>
@@ -155,6 +158,8 @@ session_start();
                               <tr>
                                   <td>'.$row["fecha"].'</td>
                                   <td>'.$row["profesor"].'</td>
+                                  <td>'.$row["cod"].'</td>
+                                  <td>'.$row["tcod"].'</td>
                                   <td>'.$row["descripcion"].'</td>
                                   
                               </tr>

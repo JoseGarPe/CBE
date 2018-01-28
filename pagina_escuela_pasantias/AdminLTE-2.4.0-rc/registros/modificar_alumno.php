@@ -163,7 +163,7 @@
                 </div>
                 <div class="form-group">
                   <label for="nombre">Clave</label>
-                  <input type="text" class="form-control" required="" value="'.$row["clave"].'" id="clave" name="clave" placeholder="Apellido">
+                  <input type="text" class="form-control" required="" id="clave" name="clave" placeholder="Clave">
                 </div>
                               ';
 
@@ -207,7 +207,7 @@
               </div>
               <div class="box-footer">
                 <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
-                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_admins.php'" name="cancel" value="Cancelar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_alumno.php'" name="cancel" value="Cancelar" >
               </div>
             </form>
 

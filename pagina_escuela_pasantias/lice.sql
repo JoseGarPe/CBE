@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2018 a las 04:04:13
+-- Tiempo de generación: 27-01-2018 a las 02:43:29
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -45,19 +45,6 @@ INSERT INTO `actividad` (`id_actividad`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `admin`
---
-
-CREATE TABLE `admin` (
-  `id_admin` varchar(5) NOT NULL,
-  `nombre` int(200) NOT NULL,
-  `apellido` int(200) NOT NULL,
-  `clave` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `administrador`
 --
 
@@ -65,15 +52,17 @@ CREATE TABLE `administrador` (
   `id_administrador` varchar(5) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
-  `clave` varchar(75) NOT NULL
+  `clave` varchar(75) NOT NULL,
+  `estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`id_administrador`, `nombre`, `apellido`, `clave`) VALUES
-('GP141', 'Eduardo Josue', 'Garcia Perez', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79');
+INSERT INTO `administrador` (`id_administrador`, `nombre`, `apellido`, `clave`, `estado`) VALUES
+('GP141', 'Eduardo Josue', 'Garcia Perez', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'Activo'),
+('VM141', 'Rodrigo Alejandro', 'Valladares Mejia', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -96,9 +85,10 @@ CREATE TABLE `alumno` (
 --
 
 INSERT INTO `alumno` (`id_alumno`, `nombre`, `apellido`, `nie`, `clave`, `id_detalle_grado`, `estado`) VALUES
-('GP141513', 'Eduardo Josue', 'Garcia Perez', '06141207971061', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'DT000001', 'Activo'),
+('GP141513', 'Eduardo Josue', 'Garcia Perez', '06141207971061', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'DT000006', 'Activo'),
 ('JS000124', 'LOREM IPSU', 'IPSU LOREM', '06141207971061', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'DT000001', 'Activo'),
 ('VM152233', 'Rodrigo Alejandro', 'Valladares Mejia', '06141207971060', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'DT000001', 'Activo'),
+('VM152234', 'Rod', 'Vall', '222', 'e633f4fc79badea1dc5db970cf397c8248bac47cc3acf9915ba60b5d76b0e88f', 'DT000001', 'Activo'),
 ('VM332251', 'Alejandro Rodrigo', 'Mejia Valladares', '06141207971061', 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79', 'DT000001', 'Activo');
 
 --
@@ -158,7 +148,9 @@ CREATE TABLE `asignacion_materia` (
 
 INSERT INTO `asignacion_materia` (`id_asignacion_materia`, `id_profesor`, `id_materia`) VALUES
 (1, 'HK001', 'MA001'),
-(2, 'HK002', 'IG001');
+(2, 'HK002', 'IG001'),
+(3, 'HK003', 'IG001'),
+(4, 'HK001', 'SC001');
 
 -- --------------------------------------------------------
 
@@ -286,8 +278,9 @@ CREATE TABLE `detalle_actividad` (
 --
 
 INSERT INTO `detalle_actividad` (`id_detalle_actividad`, `id_periodo`, `id_actividad`, `ponderacion`) VALUES
-('DA001', 'PE001', 'AC001', 25),
-('DA002', 'PE001', 'AC002', 25),
+('AR003', 'PE003', 'AC002', 2),
+('DA001', 'PE001', 'AC001', 40),
+('DA002', 'PE001', 'AC002', 10),
 ('DA003', 'PE001', 'AC003', 50);
 
 -- --------------------------------------------------------
@@ -530,7 +523,18 @@ INSERT INTO `mensualidad_alumno` (`id_ma`, `id_mensua`, `id_alumno`, `estado`, `
 (8, 8, 'GP141513', '2', '31-Agosto', NULL, '2', '2018'),
 (9, 9, 'GP141513', '2', '30-Septiembre', NULL, '2', '2018'),
 (10, 10, 'GP141513', '2', '31-Octubre', NULL, '2', '2018'),
-(11, 11, 'GP141513', '2', '30-Noviembre', NULL, '2', '2018');
+(11, 11, 'GP141513', '2', '30-Noviembre', NULL, '2', '2018'),
+(12, 1, 'VM152233', 'No Pagado', '31-Enero', NULL, 'NO', '2018'),
+(13, 2, 'VM152233', 'No Pagado', '28-Febrero', NULL, 'NO', '2018'),
+(14, 3, 'VM152233', 'No Pagado', '31-Marzo', NULL, 'NO', '2018'),
+(15, 4, 'VM152233', 'No Pagado', '30-Abril', NULL, 'NO', '2018'),
+(16, 5, 'VM152233', 'No Pagado', '31-Mayo', NULL, 'NO', '2018'),
+(17, 6, 'VM152233', 'No Pagado', '30-Junio', NULL, 'NO', '2018'),
+(18, 7, 'VM152233', 'No Pagado', '31-Julio', NULL, 'NO', '2018'),
+(19, 8, 'VM152233', 'No Pagado', '31-Agosto', NULL, 'NO', '2018'),
+(20, 9, 'VM152233', 'No Pagado', '30-Septiembre', NULL, 'NO', '2018'),
+(21, 10, 'VM152233', 'No Pagado', '31-Octubre', NULL, 'NO', '2018'),
+(22, 11, 'VM152233', 'No Pagado', '30-Noviembre', NULL, 'NO', '2018');
 
 -- --------------------------------------------------------
 
@@ -937,7 +941,7 @@ ALTER TABLE `tipo_codigo`
 -- AUTO_INCREMENT de la tabla `asignacion_materia`
 --
 ALTER TABLE `asignacion_materia`
-  MODIFY `id_asignacion_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_asignacion_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencia`
@@ -949,7 +953,7 @@ ALTER TABLE `asistencia`
 -- AUTO_INCREMENT de la tabla `codigo`
 --
 ALTER TABLE `codigo`
-  MODIFY `id_cod` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_cod` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `codigo_alumno`
@@ -967,13 +971,13 @@ ALTER TABLE `mensualidad`
 -- AUTO_INCREMENT de la tabla `mensualidad_alumno`
 --
 ALTER TABLE `mensualidad_alumno`
-  MODIFY `id_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id_notas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_notas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `observaciones`

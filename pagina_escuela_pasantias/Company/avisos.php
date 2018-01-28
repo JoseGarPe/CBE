@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-
+<br><br>
   <?php 
 
                             require_once "clases/avisos.class.php";

@@ -96,11 +96,11 @@ document.getElementById("seccion").value=cod;
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../listas/indexAdmin.php" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>*</b>*</span>
+      <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>***</b>***</span>
+      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -117,7 +117,7 @@ document.getElementById("seccion").value=cod;
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs">administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -158,7 +158,6 @@ document.getElementById("seccion").value=cod;
   </aside>
 
 
-
   <!-- Contenedor-->
   <div class="content-wrapper">
     <section class="content-header">
@@ -167,7 +166,45 @@ document.getElementById("seccion").value=cod;
       </h1>
     </section>
     <br>
+<?php 
 
+            if (isset($_GET['success'])) {
+                
+
+                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-success">
+              
+                Los datos han sido guardados exitosamente.
+             </div>
+
+                    ';
+
+                }
+
+            }elseif (isset($_GET['error'])) {
+
+               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
+                    
+
+                    echo '
+
+              <div class="callout callout-danger">
+              
+                Error al guardar, verifique los datos ingresados.
+             </div>
+
+                    ';
+
+                }
+
+            }
+
+
+             ?>
 
 <section class="content">
       <div class="row">

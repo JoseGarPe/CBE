@@ -1,11 +1,9 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>**** | Administracion</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CBE | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -31,45 +29,23 @@ session_start();
   <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script>   
-$(function(){
- $("#btn_enviar").click(function(){
- var url = "../scripts/Observaciones_profesor.php"; // El script a dónde se realizará la petición.
-    $.ajax({
-           type: "POST",
-           url: url,
-           data: $("#formulario").serialize(), // Adjuntar los campos del formulario enviado.
-           success: function(data)
-           {
-               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
-               $('#myModal').modal('show');
-           }
-         });
-
-
-
-    return false; // Evitar ejecutar el submit del formulario.
- });
-});
-</script>
-
-
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../indexAdmin.php" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>*</b>*</span>
+      <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>***</b>***</span>
-    </a>
+      <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>
+      </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
@@ -84,13 +60,13 @@ $(function(){
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Administrador</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -112,14 +88,15 @@ $(function(){
   </header>
 
 
+
   <!-- Menu -->
 
 
-  <aside class="main-sidebar">
+ <aside class="main-sidebar">
     <section class="sidebar">
 
     <?php 
-    require_once "../menu_profe.php";  
+    require_once "../menu_admin.php";  
      ?>
         
     </section>
@@ -127,96 +104,64 @@ $(function(){
 
 
 
+
   <!-- Contenedor-->
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Profesores
-        <small>Observaciones</small>
+        Aviso
+        <small>Registro de Aviso</small>
       </h1>
     </section>
-    <br>
-    <?php 
 
-            if (isset($_GET['success'])) {
-                
-
-                if ($_GET['success']=='abcFTY778mclhgGHLCVbyyt8976paaaYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-success">
-              
-                Los datos han sido guardados exitosamente.
-             </div>
-
-                    ';
-
-                }
-
-            }elseif (isset($_GET['error'])) {
-
-               if ($_GET['error']=='abcFTY778mclhgGHLCVbyyt8976poooYusnbsjaja8654OUYGVBM987654kjhgvSJHGFkjhgfdhjiuytredfghjvcx23456789okKIUYTRDFGH098765reS') {
-                    
-
-                    echo '
-
-              <div class="callout callout-danger">
-              
-                Error al guardar, verifique los datos ingresados.
-             </div>
-
-                    ';
-
-                }
-
-            }
-
-
-             ?>
-
-<section class="content">
+    
+    <section class="content">
+     
       <div class="row">
-        <div class="col-xs-4">
-          
-            
-            <form role="form" method="post" id="formulario" >
+        
+        <section class="col-lg-6 connectedSortable">
+          <div class="box box-primary">
+
+            <div class="box-header with-border">
+              <br>
+              <center><h6 class="box-title">*No dejes ningun campo vacio*</h6></center>
+            </div>
+
+            <form role="form" action="../scripts/registro_aviso.script.php" method="post">
               <div class="box-body">
-
-                <div class="form-group">
-                  <label for="codigo">Codigo del alumno</label>
-                  <input type="text" class="form-control" required="" id="codigo" name="codigo" maxlength="8" minlength="8" placeholder="Ej. VM152233">
+                  <div class="form-group">
+                  <label for="nombre">Codigo</label>
+                  <input type="text" class="form-control" required="" id="codigo" name="codigo" placeholder="AV001">
                 </div>
-
-              <div class="box-footer">
-                <input type="submit" class="btn btn-primary" name="submit" id="btn_enviar" value="Mostrar" >
+                                 
+                <div class="form-group">
+                  <label for="nombre">Titulo</label>
+                  <input type="text" class="form-control" required="" id="nombre" name="nombre" placeholder="Nombre">
+                </div>  
+                <div class="form-group">
+                  <label for="nombre">Fecha</label>
+                  <input type="date" class="form-control" required="" id="fecha" name="fecha" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                  <label for="nombre">Descripcion</label>
+                  <textarea class="ckeditor" required="" id="descripcion" name="descripcion" placeholder="Nombre"></textarea>
+                </div>             
               </div>
-            </form>            
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
+              <div class="box-footer">
+                <input type="submit" class="btn btn-primary" name="submit" value="Guardar" >
+                <input type="button" class="btn btn-danger" onClick="location.href = '../listas/lista_aviso.php'" name="cancel" value="Cancelar" >
+              </div>
+            </form>
+
+          </div>
+        </section>
+
       </div>
-      <!-- /.row -->
+   
     </section>
-
-
-<section class="content">
-      <div class="row">
-        <div class="col-xs-4">
-          
-            <div id="respuesta">
-
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-
-
-
+  
   </div>
+
 
 <!-- jQuery 3 -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -230,24 +175,7 @@ $(function(){
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+<script src="../plugins/ckeditor/ckeditor.js"></script>
 
 </body>
 </html>

@@ -7,7 +7,7 @@ $alumno = $_SESSION['alumno'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hotel Quality | Administracion</title>
+  <title>Hotel Quality | Alumnos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -61,16 +61,16 @@ $alumno = $_SESSION['alumno'];
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $alumno?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
-                  ****
+                  <?php echo $alumno?>
                 </p>
               </li>
 
@@ -111,8 +111,8 @@ $alumno = $_SESSION['alumno'];
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        
-        <small>Lista de Mensualidades  de alumnos</small>
+        Alumnos
+        <small>Lista de Mensualidades</small>
       </h1>
     </section>
     <br>
@@ -165,11 +165,10 @@ $alumno = $_SESSION['alumno'];
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr class="info">
-                  <th>Codigo</th>
                   <th>Mes</th>
                   <th>Estado</th>
-                  <th>Pagar</th>
-                  <th>Pagado</th>
+                  <th>Ultima fecha de pago</th>
+                  <th>Fecha de cancelacion</th>
                   <th>Mora</th>
                   
                 </tr>
@@ -181,15 +180,14 @@ $alumno = $_SESSION['alumno'];
               require_once "../clases/mensualidad_alumno.class.php";
               
                           $mass = new mensualidad_alumno();
-                            $ma = $mass->consultarMensualidadA($alumno);
+                          $ma = $mass->consultarMensualidadA($alumno);
                            foreach ($ma as $row) {
                               echo '
                               <tr>
-                                  <td>'.$row["id_ma"].'</td>
                                   <td>'.$row["mes"].'</td>
                                   <td>'.$row["estado"].'</td>
+                                  <td>'.$row["fecha_limi"].'</td>
                                   <td>'.$row["fech_pago"].'</td>
-                                   <td>'.$row["fecha_limi"].'</td>
                                   <td>'.$row["mora"].'</td>  
                                   
                               </tr>

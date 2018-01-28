@@ -1,5 +1,6 @@
 <?php
 session_start();
+$usuario=$_SESSION["profesor"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -149,7 +150,7 @@ xmlhttp.send("cob_banda="+cos);
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">****</span>
+              <span class="hidden-xs"><?php echo $usuario;?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -157,7 +158,7 @@ xmlhttp.send("cob_banda="+cos);
                 <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
-                  ****
+                  <?php echo $usuario;?>
                 </p>
               </li>
 

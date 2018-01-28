@@ -26,6 +26,14 @@ class materia extends Conexion{
  
 	} //Fin
 
+	function cargarMaterias2($grado,$seccion){
+
+		$sql = $this->db->query('SELECT dtm.id_detalle_materia as id, mat.nombre as nombre,hr.hora_inicio as inicio ,hr.hora_fin as fin FROM profesores pr INNER JOIN asignacion_materia asm on pr.id_profesor=asm.id_profesor INNER JOIN materia mat ON mat.id_materia=asm.id_materia INNER JOIN detalle_horario dth ON dth.id_asignacion_materia=asm.id_asignacion_materia INNER JOIN detalle_materia dtm ON dtm.id_detalle_horario=dth.id_detalle_horario INNER JOIN detalle_grado dtg on dtg.id_detalle_grado=dtm.id_detalle_grado INNER JOIN horario hr ON hr.id_horario=dth.id_horario WHERE dtg.id_grado="'.$grado.'" AND dtg.id_seccion="'.$seccion.'"'); 
+        $materia = $sql->fetch_all(MYSQLI_ASSOC); 
+        return $materia;  
+ 
+	} //Fin
+
 	function agregarMateria($codigo,$nombre){
 
 			$sql = $this->db->query("INSERT INTO materia (id_materia,nombre) VALUES ('$codigo','$nombre')"); 
@@ -39,6 +47,31 @@ class materia extends Conexion{
         	return false;
 
         }
+
+	}//agregar madre
+
+
+	function agregarAMateria($codigo,$nombre){
+
+			$sql = $this->db->query("INSERT INTO asignacion_materia (id_profesor,id_materia) VALUES ('$codigo','$nombre')"); 
+        
+        if($sql == true){
+
+        	return true;
+
+        }else{
+
+        	return false;
+
+        }
+
+	}//agregar madre
+
+	function verAMateria($profesor){
+
+			$sql = $this->db->query("SELECT m.nombre FROM asignacion_materia a INNER JOIN materia m ON a.id_materia=m.id_materia WHERE a.id_profesor='$profesor'"); 
+	        $materia= $sql->fetch_all(MYSQLI_ASSOC); 
+	        return $materia; 
 
 	}//agregar madre
 

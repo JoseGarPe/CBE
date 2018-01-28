@@ -39,7 +39,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-  <a href="../indexAdmin.php" class="logo">
+  <a href="../listas/indexAdmin.php" class="logo">
       <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->

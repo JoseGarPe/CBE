@@ -101,7 +101,7 @@ function cargarDetalleGrados(){
 	function modificarAlumno($codigo,$nombre,$apellido,$nie,$clave,$id_grado_detalle){
 		$password = hash('sha256', $clave);
 		
-		$sql = $this->db->query("UPDATE alumno SET nombre='$nombre', apellido='$apellido',nie='$nie', clave='$password',id_detalle_grado='$id_detalle_grado' WHERE id_alumno = '$codigo'"); 
+		$sql = $this->db->query("UPDATE alumno SET nombre='$nombre', apellido='$apellido',nie='$nie', clave='$password',id_detalle_grado='$id_grado_detalle' WHERE id_alumno = '$codigo'"); 
 		
         
         if($sql == true){

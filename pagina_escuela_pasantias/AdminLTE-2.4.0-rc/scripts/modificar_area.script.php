@@ -8,7 +8,7 @@ $nombre = $_POST['nombre'];
 
 
 
-   //Instancia del objeto
+  //Instancia del objeto
     $area = new area();
 
     //Envio los datos al método    

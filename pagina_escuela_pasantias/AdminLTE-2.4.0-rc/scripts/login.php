@@ -12,7 +12,7 @@ $password = $_POST['password'];
     $verificar = $datos->login($username, $password);
 
       if ($verificar == 1) {
-        header('Location: ../listas/notas_alumno.php');
+               header('Location: ../listas/avisos.php');
     }else if($verificar == 2) {
         header('Location: ../listas/asistencia_profesor.php');
     }else if($verificar == 3) {

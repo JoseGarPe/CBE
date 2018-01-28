@@ -7,7 +7,7 @@ $alumno = $_SESSION['alumno'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CBE | Portal Web</title>
+ <title>CBE | Portal Web</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -79,7 +79,7 @@ xmlhttp.send("cod_banda="+cod);
       <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>ColegioBautista</b>Emmanuel</span>
+      <span class="logo-lg"><b>C</b>BE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -104,7 +104,7 @@ xmlhttp.send("cod_banda="+cod);
                 <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
 
                 <p>
-                  ****
+                  <?php echo $alumno?>
                 </p>
               </li>
 

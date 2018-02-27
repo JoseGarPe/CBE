@@ -18,9 +18,9 @@ class materia extends Conexion{
 	} //Fin del constructor
 
 
-	function cargarMaterias($profesor,$grado,$seccion){
+	function cargarMaterias($profesor){
 
-		$sql = $this->db->query('SELECT dtm.id_detalle_materia as id, mat.nombre as nombre,hr.hora_inicio as inicio ,hr.hora_fin as fin FROM profesores pr INNER JOIN asignacion_materia asm on pr.id_profesor=asm.id_profesor INNER JOIN materia mat ON mat.id_materia=asm.id_materia INNER JOIN detalle_horario dth ON dth.id_asignacion_materia=asm.id_asignacion_materia INNER JOIN detalle_materia dtm ON dtm.id_detalle_horario=dth.id_detalle_horario INNER JOIN detalle_grado dtg on dtg.id_detalle_grado=dtm.id_detalle_grado INNER JOIN horario hr ON hr.id_horario=dth.id_horario WHERE asm.id_profesor="'.$profesor.'" AND dtg.id_grado="'.$grado.'" AND dtg.id_seccion="'.$seccion.'"'); 
+		$sql = $this->db->query('SELECT am.id_asignacion_materia as id, m.nombre as nombre FROM asignacion_materia am INNER JOIN materia m ON am.id_materia=m.id_materia WHERE id_profesor="'.$profesor.'"'); 
         $materia = $sql->fetch_all(MYSQLI_ASSOC); 
         return $materia;  
  

@@ -22,6 +22,13 @@ foreach ($GradoSelect as $row) {
 $SeccionSelect = $misSeccion->cargaSeccionNom($seccion);
 foreach ($SeccionSelect as $row) {
  echo ' '.$row['nombre'].'</h1>    </section>';
+  echo '                    <div class="row no-print">
+                                <div class="col-xs-12">
+                                  <a href="../scripts/imprimir_lista_alumnos.php?seccion='.$seccion.'&grado='.$grado.'" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir notas</a>
+                                 
+                                </div>
+                              </div><br>
+         ';
 }
 ?>
             <div class="box-body">
@@ -30,8 +37,8 @@ foreach ($SeccionSelect as $row) {
                 <tr>
                   <th>Codigo</th>
                   <th>Nombre</th>
-                  <th>Observaciones</th>
-                  <th>Codigos</th>
+                  <th>Operaciones</th>
+          
           
                 </tr>
                 </thead>

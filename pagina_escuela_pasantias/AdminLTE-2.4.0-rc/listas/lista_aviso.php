@@ -184,7 +184,7 @@
                             require_once "../clases/avisos.class.php";
 
                             $avisoss = new avisos();
-                            $aviso = $avisoss->cargarAvisos();
+                            $aviso = $avisoss->cargarAvisos1();
 
                             foreach ($aviso as $row) {
                               

@@ -16,19 +16,19 @@ session_start();
                            
 
                             $profesor= $_SESSION["profesor"];
-                            $grado= $_SESSION["grad"];
+
                             $seccion = $_POST['cob_banda'];
 
                             $_SESSION["secc"] = $seccion;
 
 
-                            $materia = $misMaterias->cargarMaterias($profesor,$grado,$seccion);
+                            $materia = $misMaterias->cargarMaterias($profesor);
 
                             foreach ($materia as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id'].'">'.$row['nombre'].' ('.$row['inicio'].' - '.$row['fin'].')</option>
+                              <option value="'.$row['id'].'">'.$row['nombre'].'</option>
 
 
                               ';

@@ -99,6 +99,8 @@ xmlhttp.send("cob_banda="+cob);
 
 function mostList(cos){
 
+
+
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();

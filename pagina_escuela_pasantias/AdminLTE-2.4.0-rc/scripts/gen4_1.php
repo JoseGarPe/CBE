@@ -56,7 +56,7 @@ session_start();
                                     <div class="form-group">
                                       <label>
 
-                                        <input id="nota'.$cs.'" name="nota'.$cs.'" type="number" min="0" max="10" value="0"/>
+                                        <input id="nota'.$cs.'" name="nota'.$cs.'" type="number" min="0" max="10" value="'.$row['nota'].'"/>
                                       </label>
                                     </div>
                                   </td>

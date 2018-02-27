@@ -7,7 +7,7 @@ $alumno = $_SESSION['alumno'];
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hotel Quality | Alumnos</title>
+  <title>CBE | Alumnos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -42,7 +42,7 @@ $alumno = $_SESSION['alumno'];
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../indexAdmin.php" class="logo">
+    <a href="../listas/avisos.php" class="logo">
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->
       <span class="logo-lg"><b>Colegio</b>Bautista Emmanuel</span>

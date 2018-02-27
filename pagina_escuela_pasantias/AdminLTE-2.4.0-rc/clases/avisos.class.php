@@ -42,6 +42,12 @@ class avisos extends Conexion{
         $aviso= $sql->fetch_all(MYSQLI_ASSOC); 
         return $aviso;  
 	}// fin consultar 
+	function  cargarAvisos1(){
+
+		$sql = $this->db->query("SELECT * FROM avisos ORDER BY fecha"); 
+        $aviso= $sql->fetch_all(MYSQLI_ASSOC); 
+        return $aviso;  
+	}// fin consultar 
 	function  cargarAvisos(){
 
 		$sql = $this->db->query("SELECT * FROM avisos WHERE Estado='SI' ORDER BY fecha"); 

@@ -155,8 +155,35 @@ $alumno = $_SESSION['alumno'];
 
 
              ?>
-  
+             <section>
+  <div class="row">
+      <div class="box">
+      <div class="box-body">
+      <div class="col-lg-12 col-md-8">
+      <div class="col-md-6 col-md-4">
+        <blockquote>
+        <h1>Mision</h1>
+  <p>Somos una institución que educa con alta calidad academica a la niñez, a la adolescencia  y a la juventud
+  mediante el fortalecimiento de lso principios y valores cristiamos, con el apoyo de la familia,la iglesia y la comunidad en general
+  promuevan una cultura de paz como forma de vida y anhelo de una convivencia social mas justa,fraterna y humana.</p>
+      </blockquote>
+      </div>
+        <div class="col-md-6 col-md-4">
+        <img src="../dist/img/logoo.jpg" width="75%" height="75%" class="img-thumbnail">
+        </div>
+      <div class="col-md-6 col-md-4">
+        <blockquote class="blockquote-reverse">
+        <h1>Vision</h1>
+           <p>Ser una institución educativa de inspiración cristiana,ecuménica de alta calidad académica, que promueva
+           la practica valores cristianos que posibiliten en el estudiante con el apoyo de la familia, la iglesia y la comunidad en general el compromiso de una convivencia social para una cultura de paz.</p>
+        </blockquote>
+      </div>
+      </div>
+      </div>
+      </div>
 
+ </div>
+</section>
 <section class="content">
       
              <?php 

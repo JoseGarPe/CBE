@@ -54,16 +54,12 @@ function cargarPeriodoAct($act){
  
 	} //Fin
 
-function cargarnotaActividad($seccion,$grado,$materia){
+function cargarnotaActividad($profesor,$materia){
 
-		$sql = $this->db->query("
-
-				SELECT DISTINCT act.nombre as nombre, act.id_actividad as id FROM actividad act LEFT JOIN detalle_actividad dact ON dact.id_actividad=act.id_actividad LEFT JOIN notas nt ON nt.id_detalle_actividad = dact.id_detalle_actividad LEFT JOIN detalle_materia dmat ON dmat.id_detalle_materia=nt.id_detalle_materia LEFT JOIN detalle_grado dgra ON dgra.id_detalle_grado=dmat.id_detalle_grado LEFT JOIN detalle_horario dhr ON dmat.id_detalle_horario=dhr.id_detalle_horario LEFT JOIN asignacion_materia amat ON dhr.id_asignacion_materia=amat.id_asignacion_materia WHERE dgra.id_seccion = '$seccion' AND dgra.id_grado = '$grado'  AND dmat.id_detalle_materia = '$materia'
-
-			"); 
+		$sql = $this->db->query("SELECT ac.id_actividad as id, ac.nombre as nombre FROM notas nt INNER JOIN detalle_actividad da ON nt.id_detalle_actividad=da.id_detalle_actividad INNER JOIN actividad ac ON ac.id_actividad=da.id_actividad INNER Join asignacion_materia am ON am.id_asignacion_materia=nt.id_asignacion_materia WHERE am.id_profesor='$profesor' AND am.id_asignacion_materia=".$materia." GROUP BY ac.id_actividad,ac.nombre"); 
         $area = $sql->fetch_all(MYSQLI_ASSOC); 
-        return $area;  
- 
+        return $area;
+
 	} //Fin
 
 function cargarActividades($codigo){
@@ -116,7 +112,19 @@ function crearActividad2($a,$b,$c,$d){
 		
 		$sql = $this->db->query("INSERT INTO detalle_actividad (id_detalle_actividad,id_periodo,id_actividad,ponderacion) VALUES ('$a','$c','$b','$d')"); 
         
-        if($sql == true){
+		$sql2 = $this->db->query("INSERT INTO notas (id_detalle_actividad,nota,id_alumno,id_detalle_materia)
+									SELECT 
+									'$a', 
+									0, 
+									al.id_alumno, 
+									am.id_asignacion_materia 
+									FROM detalle_materia dm 
+									INNER JOIN alumno al ON dm.id_detalle_grado = al.id_detalle_grado 
+									INNER JOIN detalle_horario dh ON dh.id_detalle_horario=dm.id_detalle_horario 
+									INNER JOIN asignacion_materia am ON am.id_asignacion_materia=dh.id_asignacion_materia 
+									GROUP by al.id_alumno,am.id_asignacion_materia"); 
+
+        if($sql2 == true){
 
         	return true;
 

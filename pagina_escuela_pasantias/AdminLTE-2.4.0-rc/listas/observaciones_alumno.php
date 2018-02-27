@@ -43,7 +43,7 @@ $alumno = $_SESSION['alumno'];
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+  <a href="../listas/avisos.php" class="logo">
       <!-- mini logo  -->
       <span class="logo-mini"><b>C</b>BE</span>
       <!-- logo regular s -->

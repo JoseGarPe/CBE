@@ -7,9 +7,10 @@
               </a>
              <ul class="treeview-menu">
                   <li><a href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_detalle_actividad.php"><i class="fa fa-circle-o"></i>Asig. Actividades</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i>Adm. Grados</a></li>
                   <li><a href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_asignacion_materia.php"><i class="fa fa-circle-o"></i>Asig. Materias</a></li>
-                  <li><a href="#"><i class="fa fa-circle-o"></i>Asig. Horarios</a></li>
+                  <li><a href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/asignacion_horario.php"><i class="fa fa-circle-o"></i>Asig. Horarios</a></li>
+                  <li><a href="../listas/notas_administrador.php"><i class="fa fa-circle-o"></i>Asig. Notas</a></li>
+                  <li><a href="../listas/asistencia_administrador.php"><i class="fa fa-circle-o"></i>Asistencias</a></li>
               </ul>
             </li>
 
@@ -24,12 +25,12 @@
           </a>
           <ul class="treeview-menu">
               <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_actividadPeriodo.php"><i class="fa fa-circle-o"></i>Actividades</a></li>
-               <li><a class="" href="../listas/lista_aviso.php"><i class="fa fa-circle-o"></i>Avisos</a></li>
+               <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_aviso.php"><i class="fa fa-circle-o"></i>Avisos</a></li>
               <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_periodo.php"><i class="fa fa-circle-o"></i>Periodos</a></li>
               <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_admins.php"><i class="fa fa-circle-o"></i>Administrador</a></li>
               <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_profesores.php"><i class="fa fa-circle-o"></i>Profesores</a></li>
-              <li><a class="" href="../listas/lista_inscripcion.php"><i class="fa fa-circle-o"></i>Inscripciones</a></li>
-              <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_alumno.php"><i class="fa fa-circle-o"></i>Alumnos</a></li>
+              <li><a class="" href="/CBE-master/pagina_escuela_pasantias/adminLTE-2.4.0-rc/listas/lista_inscripcion.php"><i class="fa fa-circle-o"></i>Inscripciones</a></li>
+              <li><a class="" href="../listas/lista_alumno.php"><i class="fa fa-circle-o"></i>Alumnos</a></li>
             <li class="treeview">
                   <a href="#">
                     <i class="fa fa-book"></i> <span>Asesores legales</span>

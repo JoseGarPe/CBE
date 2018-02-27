@@ -1,11 +1,9 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>CEB | Administracion</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CBE | Administracion</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -14,7 +12,8 @@ session_start();
   <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
-
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -32,142 +31,6 @@ session_start();
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
-
-
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script>
-
-//Funcion para traer a las secciones.
-
-function mostrarInfo(cod){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari.
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5.
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/secciones_administrador.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cod_banda="+cod);
-
-}
-
-
-//Funcion para traer a las materias de los profesores.
-
-function mostrarList(cob){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari.
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5.
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos2").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos2").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/materia_administrador.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cob_banda="+cob);
-
-}
-
-//Genera la lista de alulmnos.
-
-function mostList(cos){
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("datos3").innerHTML=xmlhttp.responseText;
-    }else{ 
-  document.getElementById("datos3").innerHTML='Cargando...';
-    }
-  }
-xmlhttp.open("POST","../scripts/adhen2.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("cob_banda="+cos);
-
-}
-
-//Funcion para ver las observaciones de los alumnos.
-
-function mostrar_ob(mostrar)
-	{
-				var parametros = {
-                "cod_band" : mostrar
-        };
-
-			 	var url = "../scripts/Observaciones_profesor.php"; // El script a dónde se realizará la petición.
-			    $.ajax({
-			           type: "POST",
-			           url: url,
-			           data: parametros, // Adjuntar los campos del formulario enviado.
-			           success: function(data)
-			           {
-			               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
-			               $('#myModal').modal('show');
-			           }
-			         });
-	}
-
-//Funcion para agregar las observaciones de los alumnos.
-
-function agregar_ob(agregar)
-	{
-        var parametros = {
-                "cod_band" : agregar
-        };
-
-        var url = "../scripts/observaciones_profesor2.php"; // El script a dónde se realizará la petición.
-          $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: parametros, // Adjuntar los campos del formulario enviado.
-                 success: function(data)
-                 {
-                     $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
-                     $('#myModal').modal('show');
-                 }
-               });
-	}
-
-</script>
-
-
-
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -177,9 +40,9 @@ function agregar_ob(agregar)
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo  -->
-      <span class="logo-mini"><b>C</b>EB</span>
+      <span class="logo-mini"><b>H</b>Q</span>
       <!-- logo regular s -->
-      <span class="logo-lg"><b>C</b>EB</span>
+      <span class="logo-lg"><b>Hotel</b>Quality</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -195,13 +58,13 @@ function agregar_ob(agregar)
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/avatar1.png" class="user-image" alt="User Image">
+              <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">****</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../dist/img/avatar1.png" class="img-circle" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   ****
@@ -223,6 +86,9 @@ function agregar_ob(agregar)
   </header>
 
 
+
+
+
   <!-- Menu -->
 
 
@@ -242,8 +108,8 @@ function agregar_ob(agregar)
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Observaciones de alumnos
-        <small>Lista de observaciones</small>
+        Areas educativas
+        <small>Lista de areas</small>
       </h1>
     </section>
     <br>
@@ -286,59 +152,75 @@ function agregar_ob(agregar)
 
 
              ?>
+  
 
 <section class="content">
       <div class="row">
         <div class="col-xs-12">
           
             
-             <div class="form-group">
-                  
-                    <br>
-                    <select onchange="mostrarInfo(this.value)" id="estado" name="estado" class="form-control select2" style="width: 25%;">
+            <!-- /.box-header -->
+            
 
-                          <option value="">Selecciona un grado</option>
+          <div class="box">
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Operaciones</th>
+                </tr>
+                </thead>
 
-                        <?php 
-                        
 
+                <tbody>
+                
+                
+                <?php 
 
-                            require_once "../clases/grados.class.php";
+                            require_once "../clases/area.class.php";
 
-                            $misGrados = new grado();
+                            $misAreas = new area();
 
-                            $grado = $misGrados->cargarGrado();
+                            $area = $misAreas->cargarArea();
 
-                            foreach ($grado as $row) {
+                            foreach ($area as $row) {
                               
                               echo '
 
-                              <option value="'.$row['id_grado'].'">'.$row['nombre'].'</option>
-
+                              <tr>
+                                  <td>'.$row["nombre"].'</td>
+                                  <td>
+                                    <a href="../registros/modificar_area.php?cod='.$row["id_area"].'" class="btn btn-warning">Modificar</a>
+                                    <a href="../scripts/eliminar_area.script.php?cod='.$row["id_area"].'" class="btn btn-danger">Eliminar</a>
+                                  </td>
+                              </tr>
 
                               ';
 
                             }
 
-
                             ?>
 
+                </tbody>
 
-                  </select>
-                </div>
 
-                <div class="form-group">
-                    <div id="datos"></div>
-                </div>
+                
+              </table>
 
+              <div class="box-footer clearfix no-border">
+              <button type="button" onClick="location.href = '../registros/registro_area.php'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Agregar</button>
+              </div>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
-
-
 
 
   </div>
@@ -355,7 +237,7 @@ function agregar_ob(agregar)
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
+
 <script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 

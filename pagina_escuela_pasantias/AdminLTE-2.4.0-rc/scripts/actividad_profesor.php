@@ -22,7 +22,8 @@ session_start();
 
                              $_SESSION["mat"] = $materia;
 
-                            $actividad = $misactividad->cargarnotaActividad($seccion,$grado,$materia);
+
+                            $actividad = $misactividad->cargarnotaActividad($profesor,$materia);
 
                             foreach ($actividad as $row) {
                               

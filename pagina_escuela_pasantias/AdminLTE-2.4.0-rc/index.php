@@ -22,6 +22,26 @@
 
 <body class="hold-transition skin-blue sidebar-mini" style="background: skyblue;">
 
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+  <div class="col-xs-2 col-md-2">
+    <div class="alert alert-primary">
+  <img src="dist/img/logoo.jpg"  class="img-thumbnail">
+
+</div>
+
+  </div>
+  <div class="col-xs-8 col-md-6">
+    <div class="page-header">
+  <h1>Portal Web</h1>
+  <h2>Colegio Bautista Emmanuel</h2>
+ 
+</div>
+  </div>
+  
+</div>
+ </div>
+
 <section style="margin-left: 30%; margin-right: 30%; margin-top: 10%">
 
 <div class="box box-info">

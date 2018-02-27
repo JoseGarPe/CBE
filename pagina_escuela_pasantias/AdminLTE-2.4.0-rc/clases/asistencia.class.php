@@ -44,7 +44,10 @@ function cargarAlumnos($grado,$seccion,$profesor,$materia){
 		$sql = $this->db->query('
 
 
-			     SELECT CONCAT(alum.nombre, " ", alum.apellido) as alumno, alum.id_alumno as codigo, detm.id_detalle_materia as materia FROM alumno alum INNER JOIN detalle_grado detg on alum.id_detalle_grado=detg.id_detalle_grado INNER JOIN detalle_materia detm on detg.id_detalle_grado=detm.id_detalle_grado INNER JOIN detalle_horario deth on detm.id_detalle_horario=deth.id_detalle_horario INNER JOIN asignacion_materia asgm on asgm.id_asignacion_materia=deth.id_asignacion_materia INNER JOIN profesores prof on prof.id_profesor=asgm.id_profesor WHERE prof.id_profesor="'.$profesor.'" AND detg.id_grado="'.$grado.'" AND detg.id_seccion="'.$seccion.'" AND detm.id_detalle_materia="'.$materia.'"'
+			    SELECT CONCAT(alum.nombre, " ", alum.apellido) as alumno, alum.id_alumno as codigo, ma.nombre as materia,
+       nt.nota FROM alumno alum INNER JOIN notas nt ON alum.id_alumno=nt.id_alumno INNER JOIN asignacion_materia am ON am.id_asignacion_materia=nt.id_asignacion_materia
+			    	INNER JOIN materia ma on ma.id_materia= am.id_materia
+			    	 WHERE am.id_profesor="'.$profesor.'" AND am.id_asignacion_materia='.$materia.'' 
 
 		);
 
@@ -128,12 +131,11 @@ function insetarAsistencia($alumno,$estadp,$materia){
 
 	}
 
-function insetarNota($a,$b,$c,$d,$e){
+function insetarNota($c,$d,$e){
 
 
 		$sql = $this->db->query("
-			INSERT INTO notas (id_detalle_actividad, nota, id_alumno, id_detalle_materia)
-			SELECT dac.id_detalle_actividad, '$c' as nota, '$d' as alumno, '$e' as materia FROM detalle_actividad dac WHERE dac.id_periodo = '$a' AND dac.id_actividad = '$b'"); 
+			UPDATE notas set nota ='".$c."' WHERE id_alumno='".$d."' AND id_asignacion_materia='".$e."' "); 
         
         if($sql == true){
 

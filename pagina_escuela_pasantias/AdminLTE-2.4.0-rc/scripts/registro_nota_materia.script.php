@@ -16,7 +16,7 @@ session_start();
 	
 
             for ($i=1; $i <$nm ; $i++) { 
-				$misAsistencias->insetarNota($periodo,$actividad,$_POST['nota'.$i.''],$_POST['A'.$i.''],$materia);
+				$misAsistencias->insetarNota($_POST['nota'.$i.''],$_POST['A'.$i.''],$materia);
 			}
 
 	 if ($misAsistencias == true) {
